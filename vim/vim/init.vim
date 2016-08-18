@@ -1,0 +1,1 @@
+/home/derrick/.vimrc
