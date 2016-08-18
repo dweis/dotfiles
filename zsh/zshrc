@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/home/derrick/.oh-my-zsh
+export ZSH=${HOME}/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -85,4 +85,9 @@ export EDITOR=vim
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-eval `dircolors ~/.dircolors/dircolors.256dark`
+if whence dircolors >/dev/null; then
+  eval `dircolors ~/.dircolors/dircolors.256dark`
+else
+  export CLICOLORS=1
+  export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+fi
