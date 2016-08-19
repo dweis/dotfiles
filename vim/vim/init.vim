@@ -37,7 +37,6 @@ filetype plugin indent on
 set number
 set nowrap
 set showmode
-set tw=80
 set smartcase
 set smarttab
 set smartindent
@@ -47,7 +46,6 @@ set shiftwidth=2
 set expandtab
 set incsearch
 set history=1000
-"set clipboard=unnamedplus,autoselect
 set colorcolumn=80,100
 set list listchars=trail:.
 
@@ -62,7 +60,6 @@ set t_Co=256
 
 set cmdheight=1
 
-"colorscheme gruvbox
 colorscheme solarized
 set background=dark
 
