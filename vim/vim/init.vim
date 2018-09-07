@@ -1,34 +1,38 @@
-" -- based on: http://www.stephendiehl.com/posts/vim_2016.html
 set nocompatible
 call plug#begin('~/.vim/plugged')
 
 
-" plugins
+" Plugins
 call plug#begin()
-Plug 'altercation/vim-colors-solarized'
-Plug 'chriskempson/vim-tomorrow-theme'
+" General
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'derekwyatt/vim-scala'
-Plug 'digitaltoad/vim-pug'
-Plug 'eagletmt/ghcmod-vim'
-Plug 'eagletmt/neco-ghc'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ervandew/supertab'
-Plug 'FrigoEU/psc-ide-vim'
-Plug 'garbas/vim-snipmate'
 Plug 'godlygeek/tabular'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'morhetz/gruvbox'
-Plug 'raichoo/purescript-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
-Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/vimproc.vim'
-Plug 'tomtom/tlib_vim'
-Plug 'tomasr/molokai'
+Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'vim-airline/vim-airline'
+" Colorschemes
+Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'vim-scripts/wombat256.vim'
+" Languages
+Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
+Plug 'purescript-contrib/purescript-vim', { 'for': 'purescript' }
+Plug 'FrigoEU/psc-ide-vim', { 'for': 'purescript' }
+Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+" Snipmate
+Plug 'garbas/vim-snipmate'
+Plug 'MarcWeber/vim-addon-mw-utils'
+" Not in user
+" Plug 'tomtom/tlib_vim'
 call plug#end()
 
 syntax on
@@ -62,6 +66,7 @@ set cmdheight=1
 
 colorscheme solarized
 set background=dark
+" set background=light
 
 " -- syntastic / haskell config
 map <Leader>s :SyntasticToggleMode<CR>
@@ -111,15 +116,15 @@ noremap <leader>b<space> :CtrlPBuffer<cr>
 let g:ctrlp_custom_ignore = '\v[\/]dist$'
 
 " -- psc-ide
-au FileType purescript nmap <leader>tq :PSCIDEtype<CR>
-au FileType purescript nmap <leader>s :PSCIDEapplySuggestion<CR>
-au FileType purescript nmap <leader>a :PSCIDEaddTypeAnnotation<CR>
-au FileType purescript nmap <leader>i :PSCIDEimportIdentifier<CR>
-au FileType purescript nmap <leader>r :PSCIDEload<CR>
-au FileType purescript nmap <leader>p :PSCIDEpursuit<CR>
-au FileType purescript nmap <leader>c :PSCIDEcaseSplit<CR>
-au FileType purescript nmap <leader>qd :PSCIDEremoveImportQualifications<CR>
-au FileType purescript nmap <leader>qa :PSCIDEaddImportQualifications<CR>
+au FileType purescript nmap <leader>tq :Ptype<CR>
+au FileType purescript nmap <leader>s :Papply<CR>
+au FileType purescript nmap <leader>a :PaddTypeAnnotation<CR>
+au FileType purescript nmap <leader>i :PimportIdentifier<CR>
+au FileType purescript nmap <leader>r :Pload<CR>
+au FileType purescript nmap <leader>p :Ppursuit<CR>
+au FileType purescript nmap <leader>c :PcaseSplit<CR>
+au FileType purescript nmap <leader>qd :PremoveImportQualifications<CR>
+au FileType purescript nmap <leader>qa :PaddImportQualifications<CR>
 
 " -- airline
 set laststatus=2
