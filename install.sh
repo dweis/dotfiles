@@ -2,9 +2,9 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-ln -sf ${DIR}/dircolors ~/.dircolors
-#ln -sf ${DIR}/git/gitconfig ~/.gitconfig
-ln -sf ${DIR}/tmux/tmux.conf ~/.tmux.conf
-ln -sf ${DIR}/vim/vim ~/.vim
-ln -sf ${DIR}/vim/vim/init.vim ~/.vimrc
-ln -sf ${DIR}/zsh/zshrc ~/.zshrc
+ln -s ${DIR}/dircolors ~/.dircolors
+ln -s ${DIR}/git/gitconfig ~/.gitconfig
+ln -s ${DIR}/tmux/tmux.conf ~/.tmux.conf
+ln -s ${DIR}/vim/vim ~/.vim
+ln -s ${DIR}/vim/vim/init.vim ~/.vimrc
+ln -s ${DIR}/zsh/zshrc ~/.zshrc
