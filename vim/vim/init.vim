@@ -17,7 +17,6 @@ let g:deoplete#enable_at_startup = 1
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ervandew/supertab'
-Plug 'godlygeek/tabular'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
@@ -33,6 +32,7 @@ Plug 'purescript-contrib/purescript-vim', { 'for': 'purescript' }
 Plug 'FrigoEU/psc-ide-vim', { 'for': 'purescript' }
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+Plug 'godlygeek/tabular', { 'for': 'haskell' }
 call plug#end()
 
 set number
@@ -58,9 +58,8 @@ set cmdheight=1
 
 colorscheme solarized
 set background=dark
-"set background=light
 
-" -- supertab
+" -- Supertab
 let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 
 if has("gui_running")
@@ -71,16 +70,13 @@ else " no gui
   endif
 endif
 
-let g:haskellmode_completion_ghc = 1
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
 " -- NERDtree
 map <Leader>n :NERDTreeToggle<CR>
 
-" -- ctrl-p
+" -- Ctrl-P
 map <silent> <Leader>t :CtrlP()<CR>
 noremap <leader>b<space> :CtrlPBuffer<cr>
 let g:ctrlp_custom_ignore = '\v[\/]dist$'
 
-" -- airline
+" -- Airline
 let g:airline_powerline_fonts = 1
