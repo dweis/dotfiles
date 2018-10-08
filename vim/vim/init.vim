@@ -1,18 +1,15 @@
 set nocompatible
 
+"let g:deoplete#enable_at_startup = 1
+
 " Plugins
 call plug#begin('~/.vim/plugged')
 " Defaults
 Plug 'tpope/vim-sensible'
 " Deoplete
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
 " General
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
