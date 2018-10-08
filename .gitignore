@@ -1,2 +1,7 @@
 vim/vim/plugged/*
 vim/vim/.netrwhist
+xmonad/xmonad.errors
+xmonad/xmonad.hi
+xmonad/xmonad.o
+xmonad/local-bin
+xmonad/*x86_64-linux
