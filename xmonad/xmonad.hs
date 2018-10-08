@@ -6,7 +6,7 @@ import XMonad.Util.EZConfig(additionalKeysP)
 import System.IO
 
 main = do
-  xmproc <- spawnPipe "xmobar"
+  xmproc <- spawnPipe "taffybar"
   xmonad $ defaultConfig
         { manageHook = manageDocks <+> manageHook defaultConfig
         , layoutHook = avoidStruts $ layoutHook defaultConfig
