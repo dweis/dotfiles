@@ -13,4 +13,5 @@ ln -s ${DIR}/spacemacs/spacemacs ~/.spacemacs
 ln -s ${DIR}/xmonad ~/.xmonad
 ln -s ${DIR}/taffybar ~/.config/taffybar
 ln -s ${DIR}/termite ~/.config/termite
+ln -s ${DIR}/stalonetray/stalonetrayrc ~/.stalonetrayrc
 ln -s ${DIR}/xprofile/xprofile ~/.xprofile

@@ -1,5 +1,5 @@
-taffybar &
 ~/.fehbg
 xscreensaver -no-splash &
 stalonetray &
 xcompmgr -c &
+taffybar &
