@@ -251,7 +251,8 @@ myTabTheme = def
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
-myModMask = mod4Mask
+--myModMask = mod4Mask
+myModMask = mod1Mask
 altMask = mod1Mask
 
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $

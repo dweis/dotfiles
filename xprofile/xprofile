@@ -8,6 +8,4 @@ trayer --edge top \
    --width 5 \
    --tint 0x282c34 &
 xscreensaver -no-splash &
-#stalonetray &
 xcompmgr -c &
-#taffybar &
