@@ -1,0 +1,4 @@
+~/.fehbg
+xcompmgr -c &
+xscreensaver -no-splash &
+stalonetray &

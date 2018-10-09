@@ -81,8 +81,8 @@ main = do
           , mpris2New
           ]
         , barPosition = Top
-        , barPadding = 10
-        , barHeight = 50
+        , barPadding = 0
+        , barHeight = 40
         , widgetSpacing = 0
         }
   dyreTaffybar $ withLogServer $ withToggleServer $

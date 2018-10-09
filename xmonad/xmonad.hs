@@ -7,9 +7,6 @@ import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeysP)
 import System.IO
 
-myStartupHook = do
-  spawn "xscreensaver -no-splash"
-
 main = do
   tbproc <- spawnPipe "taffybar"
 
@@ -23,12 +20,13 @@ main = do
             { ppOutput = hPutStrLn tbproc
             , ppTitle = xmobarColor "green" "" . shorten 50
             }
-        , startupHook = myStartupHook
-        , terminal = "termite" }
+        , terminal = "termite"
+        , borderWidth = 0
+        }
         `additionalKeysP`
               [ ("M-p", spawn "x=$(dmenu -i -fn Hack) && exec $x")
-              , ("M-q", spawn "xmonad --recompile && xmonad --restart")
-              , ("M-f", spawn "firefox")
+              , ("M-S-r", spawn "xmonad --recompile && xmonad --restart")
+              , ("M-S-f", spawn "firefox")
               , ("<XF86AudioRaiseVolume>", spawn "amixer sset Master 3%+")
               , ("<XF86AudioLowerVolume>", spawn "amixer sset Master 3%-")
               , ("<XF86AudioMute>",        spawn "amixer sset Master toggle")
