@@ -68,7 +68,7 @@ myLauncher = "rofi -show run"
 -- Workspaces
 -- The default number of workspaces (virtual screens) and their names.
 --
-myWorkspaces = ["1: term","2: web","3: code","4: media"] ++ map show [5..9]
+myWorkspaces = map show [0..9]-- ["1: term","2: web","3: code","4: media"] ++ map show [5..9]
 
 
 ------------------------------------------------------------------------
