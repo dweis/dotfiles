@@ -16,3 +16,4 @@ ln -s ${DIR}/termite ~/.config/termite
 ln -s ${DIR}/stalonetray/stalonetrayrc ~/.stalonetrayrc
 ln -s ${DIR}/xprofile/xprofile ~/.xprofile
 ln -s ${DIR}/xscreensaver/xscreensaver ~/.xscreensaver
+ln -s ${DIR}/rofi ~/.config/rofi

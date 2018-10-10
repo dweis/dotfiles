@@ -60,7 +60,7 @@ myScreenshot = "scrot"
 
 -- The command to use as a launcher, to launch commands that don't have
 -- preset keybindings.
-myLauncher = "rofi -show run"
+myLauncher = "rofi -show combi"
 
 
 
