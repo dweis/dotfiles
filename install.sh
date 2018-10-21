@@ -17,3 +17,4 @@ ln -s ${DIR}/stalonetray/stalonetrayrc ~/.stalonetrayrc
 ln -s ${DIR}/xprofile/xprofile ~/.xprofile
 ln -s ${DIR}/xscreensaver/xscreensaver ~/.xscreensaver
 ln -s ${DIR}/rofi ~/.config/rofi
+ln -s ${DIR}/compton/compton.conf ~/.config/compton.conf

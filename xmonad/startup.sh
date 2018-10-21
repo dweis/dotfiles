@@ -46,9 +46,9 @@ if [ -z "$(pgrep xscreensaver)" ] ; then
 fi
 
 # compton
-#if [ -z "$(pgrep compton)" ] ; then
-#    compton -b &
-#fi
+if [ -z "$(pgrep compton)" ] ; then
+    compton -b &
+fi
 
 # Network Applet
 if [ -z "$(pgrep nm-applet)" ] ; then
