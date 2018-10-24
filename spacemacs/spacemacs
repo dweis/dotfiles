@@ -51,10 +51,12 @@ values."
      syntax-checking
      version-control
      (scala :variables
-            scala-enable-eldoc t
+            ;; scala-enable-eldoc t
             scala-auto-insert-asterisk-in-comments t
-            scala-use-unicode-arrows t
-            scala-auto-start-ensime t)
+            ;; scala-use-unicode-arrows t
+            scala-auto-start-ensime t
+            scala-indent:use-javadoc-style t
+            )
      javascript
      ;; (haskell :variables haskell-enable-shm-support t)
      (haskell :variables
@@ -281,7 +283,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -340,6 +342,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq flycheck-check-syntax-automatically '(mode-enabled save))
+  ;; (setq-default flycheck-scalastylerc "/home/derrick/.config/scalastyle_config.xml")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
