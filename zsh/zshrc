@@ -6,6 +6,9 @@ plugins=(git, vi-mode, aws)
 
 # User configuration
 
+# Enable vim keybindings
+bindkey -v
+
 export PATH="/home/derrick/bin:/home/derrick/.local/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
