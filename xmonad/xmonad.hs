@@ -1,52 +1,56 @@
 -- xmonad config used by Malcolm MD
 -- https://github.com/randomthought/xmonad-config
 
-import System.IO
-import System.Exit
+import           System.Exit
+import           System.IO
 -- import System.Taffybar.Hooks.PagerHints (pagerHints)
 
-import qualified Data.List as L
+import qualified Data.List                           as L
 
-import XMonad
-import XMonad.Actions.Navigation2D
-import XMonad.Actions.UpdatePointer
+import           XMonad
+import           XMonad.Actions.Navigation2D
+import           XMonad.Actions.UpdatePointer
 
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.SetWMName
-import XMonad.Hooks.EwmhDesktops (ewmh)
+import           XMonad.Config.Gnome
 
-import XMonad.Layout.Gaps
-import XMonad.Layout.Fullscreen
-import XMonad.Layout.BinarySpacePartition as BSP
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Tabbed
-import XMonad.Layout.ThreeColumns
-import XMonad.Layout.Spacing
-import XMonad.Layout.MultiToggle
-import XMonad.Layout.MultiToggle.Instances
-import XMonad.Layout.NoFrillsDecoration
-import XMonad.Layout.Renamed
-import XMonad.Layout.Simplest
-import XMonad.Layout.SubLayouts
-import XMonad.Layout.WindowNavigation
-import XMonad.Layout.ZoomRow
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.EwmhDesktops           (ewmh)
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.ManageHelpers
+import           XMonad.Hooks.SetWMName
 
-import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys)
+import           XMonad.Layout.BinarySpacePartition  as BSP
+import           XMonad.Layout.Fullscreen
+import           XMonad.Layout.Gaps
+import           XMonad.Layout.MultiToggle
+import           XMonad.Layout.MultiToggle.Instances
+import           XMonad.Layout.NoBorders
+import           XMonad.Layout.NoFrillsDecoration
+import           XMonad.Layout.Renamed
+import           XMonad.Layout.Simplest
+import           XMonad.Layout.Spacing
+import           XMonad.Layout.SubLayouts
+import           XMonad.Layout.Tabbed
+import           XMonad.Layout.ThreeColumns
+import           XMonad.Layout.WindowNavigation
+import           XMonad.Layout.ZoomRow
 
-import Graphics.X11.ExtraTypes.XF86
-import qualified XMonad.StackSet as W
-import qualified Data.Map        as M
+import           XMonad.Util.EZConfig                (additionalKeys)
+import           XMonad.Util.Run                     (spawnPipe)
 
+import qualified Data.Map                            as M
+import           Graphics.X11.ExtraTypes.XF86
+import qualified XMonad.StackSet                     as W
+
+
+useGnome = True
 
 ----------------------------mupdf--------------------------------------------
 -- Terminimport XMonad.Hooks.EwmhDesktopsal
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "termite"
+myTerminal = if useGnome then "gnome-terminal" else "termite"
 
 -- The command to lock the screen or show the screensaver.
 myScreensaver = "xscreensaver-command -lock; xset dpms force off"
@@ -495,27 +499,22 @@ myStartupHook = do
 ------------------------------------------------------------------------
 -- Run xmonad with all the defaults we set up.
 --
-main = do
-  xmproc <- spawnPipe "xmobar ~/.xmonad/xmobarrc.hs"
-  -- xmproc <- spawnPipe "taffybar"
-  xmonad $ docks
-         $ withNavigation2DConfig myNav2DConf
-         $ additionalNav2DKeys (xK_Up, xK_Left, xK_Down, xK_Right)
-                               [
-                                  (mod4Mask,               windowGo  )
-                                , (mod4Mask .|. shiftMask, windowSwap)
-                               ]
-                               False
-         $ ewmh
-         -- $ pagerHints -- uncomment to use taffybar
-         $ defaults {
-         logHook = dynamicLogWithPP xmobarPP {
-                  ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" . wrap "[" "]"
-                , ppTitle = xmobarColor xmobarTitleColor "" . shorten 50
-                , ppSep = "   "
-                , ppOutput = hPutStrLn xmproc
-         } >> updatePointer (0.75, 0.75) (0.75, 0.75)
-      }
+main = if useGnome then
+    xmonad myGnomeConfig
+  else
+    do
+      xmproc <- spawnPipe "xmobar ~/.xmonad/xmobarrc.hs"
+      xmonad $ docks
+            $ withNavigation2DConfig myNav2DConf
+            $ additionalNav2DKeys (xK_Up, xK_Left, xK_Down, xK_Right)
+                                  [
+                                      (mod4Mask,               windowGo  )
+                                    , (mod4Mask .|. shiftMask, windowSwap)
+                                  ]
+                                  False
+            $ ewmh
+            -- $ pagerHints -- uncomment to use taffybar
+            $ myDefaultConfig xmproc
 
 ------------------------------------------------------------------------
 -- Combine it all together
@@ -525,7 +524,7 @@ main = do
 --
 -- No need to modify this.
 --
-defaults = def {
+defaults baseConfig = baseConfig {
     -- simple stuff
     terminal           = myTerminal,
     focusFollowsMouse  = myFocusFollowsMouse,
@@ -541,9 +540,21 @@ defaults = def {
 
     -- hooks, layouts
     layoutHook         = myLayout,
+
     -- handleEventHook    = E.fullscreenEventHook,
     handleEventHook    = fullscreenEventHook,
-    manageHook         = manageDocks <+> myManageHook,
-    startupHook        = myStartupHook
+    manageHook         = manageDocks <+> myManageHook
 }
 
+myGnomeConfig = defaults $ gnomeConfig
+
+myDefaultConfig xmproc = defaults $ def {
+         startupHook = myStartupHook,
+         logHook = dynamicLogWithPP xmobarPP {
+                  ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" . wrap "[" "]"
+                , ppTitle = xmobarColor xmobarTitleColor "" . shorten 50
+                , ppSep = "   "
+                , ppOutput = hPutStrLn xmproc
+                               }
+           >> updatePointer (0.75, 0.75) (0.75, 0.75)
+      }
