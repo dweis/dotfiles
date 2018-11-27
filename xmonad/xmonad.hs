@@ -500,7 +500,16 @@ myStartupHook = do
 -- Run xmonad with all the defaults we set up.
 --
 main = if useGnome then
-    xmonad myGnomeConfig
+    xmonad $ docks
+           $ withNavigation2DConfig myNav2DConf
+           $ additionalNav2DKeys (xK_Up, xK_Left, xK_Down, xK_Right)
+                                  [
+                                      (mod4Mask,               windowGo  )
+                                    , (mod4Mask .|. shiftMask, windowSwap)
+                                  ]
+                                  False
+           $ ewmh
+           $ myGnomeConfig
   else
     do
       xmproc <- spawnPipe "xmobar ~/.xmonad/xmobarrc.hs"
