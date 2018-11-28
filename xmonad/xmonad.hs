@@ -43,7 +43,7 @@ import           Graphics.X11.ExtraTypes.XF86
 import qualified XMonad.StackSet                     as W
 
 
-useGnome = True
+useGnome = False
 
 ----------------------------mupdf--------------------------------------------
 -- Terminimport XMonad.Hooks.EwmhDesktopsal
