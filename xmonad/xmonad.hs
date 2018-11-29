@@ -50,7 +50,7 @@ useGnome = False
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = if useGnome then "gnome-terminal" else "hyper"
+myTerminal = "gnome-terminal" -- if useGnome then "gnome-terminal" else "hyper"
 
 -- The command to lock the screen or show the screensaver.
 myScreensaver = "xscreensaver-command -lock; xset dpms force off"
@@ -512,7 +512,7 @@ main = if useGnome then
            $ myGnomeConfig
   else
     do
-      xmproc <- spawnPipe "xmobar ~/.xmonad/xmobarrc.hs"
+      tbproc <- spawnPipe "my-taffybar" -- xmproc <- xmobar ~/.xmonad/xmobarrc.hs"
       xmonad $ docks
             $ withNavigation2DConfig myNav2DConf
             $ additionalNav2DKeys (xK_Up, xK_Left, xK_Down, xK_Right)
@@ -523,7 +523,7 @@ main = if useGnome then
                                   False
             $ ewmh
             -- $ pagerHints -- uncomment to use taffybar
-            $ myDefaultConfig xmproc
+            $ myDefaultConfig tbproc
 
 ------------------------------------------------------------------------
 -- Combine it all together
