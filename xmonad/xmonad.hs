@@ -50,7 +50,7 @@ useGnome = False
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = if useGnome then "gnome-terminal" else "termite"
+myTerminal = if useGnome then "gnome-terminal" else "hyper"
 
 -- The command to lock the screen or show the screensaver.
 myScreensaver = "xscreensaver-command -lock; xset dpms force off"

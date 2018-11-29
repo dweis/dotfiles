@@ -1,0 +1,3 @@
+[submodule "taffybar/taffybar"]
+	path = taffybar/taffybar
+	url = https://github.com/taffybar/taffybar
