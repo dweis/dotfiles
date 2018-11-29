@@ -27,7 +27,8 @@ import           XMonad.Util.EZConfig               (additionalKeys,
 altMask    = mod1Mask
 myModMask  = mod4Mask
 
-myTerminal = "termite"
+--myTerminal = "termite"
+myTerminal = "hyper"
 
 -- Layouts
 basicLayout = Tall nmaster delta ratio where
@@ -55,6 +56,7 @@ myManageHook = composeAll [
   ]
 
 myStartupHook = do
+  spawn "setxkbmap -option caps:super"
   spawn "~/.local/bin/my-taffybar"
   spawn "compton -b"
   spawn "nm-applet"

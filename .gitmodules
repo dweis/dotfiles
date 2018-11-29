@@ -1,5 +1,5 @@
 [submodule "taffybar/taffybar"]
-	path = xmonad/my-taffybar/taffybar
+	path = my-taffybar/taffybar
 	url = https://github.com/taffybar/taffybar
 [submodule "xmonad/xmonad"]
 	path = xmonad/xmonad

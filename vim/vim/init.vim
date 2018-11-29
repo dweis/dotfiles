@@ -22,6 +22,7 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'vim-airline/vim-airline'
 " Colorschemes
 Plug 'altercation/vim-colors-solarized'
+Plug 'dracula/vim'
 " Languages
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
@@ -53,7 +54,7 @@ set t_Co=256
 
 set cmdheight=1
 
-colorscheme solarized
+colorscheme dracula
 set background=dark
 
 " -- Supertab
