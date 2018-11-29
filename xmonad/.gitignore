@@ -1,1 +1,3 @@
 xmonad.state
+.stack-work
+*.swp

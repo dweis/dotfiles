@@ -35,3 +35,23 @@ extra-deps:
 - time-units-1.0.0
 - xml-helpers-1.0.0
 resolver: lts-11.16
+nix:
+  packages:
+    - gobjectIntrospection
+    - libxml2
+    - pkgconfig
+    - x11
+    - libdbusmenu-gtk3
+    - cairo
+    - gtk3
+    - zlib
+    - gcc
+    - gnome2.pango
+    - hicolor-icon-theme
+    - libdbusmenu-glib
+    - numix-icon-theme-circle
+    - xorg.libX11
+    - xorg.libXext
+    - xorg.libXinerama
+    - xorg.libXrandr
+    - xorg.libXrender

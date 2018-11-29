@@ -1,26 +1,9 @@
 #!/bin/sh
 
-# System tray
-#if [ -z "$(pgrep trayer)" ] ; then
-#    trayer --edge top \
-#           --align right \
-#           --widthtype percent \
-#           --height 24 \
-#           --alpha 0 \
-#           --transparent true \
-#           --width 5 \
-#           --tint 0x282c34 &
-#fi
-
-# Power manager
-#if [ -z "$(pgrep xfce4-power-manager)" ] ; then
-#    xfce4-power-manager &
-#fi
-
 # Taffybar
-# if [ -z "$(pgrep taffybar)" ] ; then
-#     taffybar &
-# fi
+if [ -z "$(pgrep taffybar)" ] ; then
+     my-taffybar &
+fi
 
 # Redshift
 #if [ -z "$(pgrep redshift)" ] ; then
@@ -33,9 +16,6 @@
 # fi
 
 # Wallpaper
-#if [ -z "$(pgrep nitrogen)" ] ; then
-#    nitrogen --restore &
-#fi
 if [ -x $HOME/.fehbg ] ; then
   $HOME/.fehbg
 fi
@@ -54,11 +34,4 @@ fi
 if [ -z "$(pgrep nm-applet)" ] ; then
     nm-applet &
 fi
-
-# Google Drive
-#if [ -z "$(pgrep insync)" ] ; then
-#    insync start &
-#fi
-# xbindkeys
-xbindkeys
 
