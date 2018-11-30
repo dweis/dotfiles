@@ -3,7 +3,6 @@ resolver: lts-11.7
 packages:
 - xmonad
 - xmonad-contrib
-- ../my-taffybar/taffybar
 
 extra-deps:
 - X11-xft-0.3.1

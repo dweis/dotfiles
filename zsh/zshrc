@@ -1,3 +1,8 @@
+if [ -e /home/derrick/.zshrc.local.pre ]
+then
+  . /home/derrick/.zshrc.local.pre
+fi
+
 export ZSH=${HOME}/.oh-my-zsh
 
 ZSH_THEME="norm"
@@ -32,3 +37,9 @@ export NVM_DIR="$HOME/.nvm"
 if [ -e /home/derrick/.nix-profile/etc/profile.d/nix.sh ]; then . /home/derrick/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 PATH=$PATH:/home/derrick/.local/bin
+
+if [ -e /home/derrick/.zshrc.local.post ]
+then
+  . /home/derrick/.zshrc.local.post
+fi
+

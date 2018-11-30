@@ -1,9 +1,11 @@
 module Main where
 
+import           Data.Maybe                         (maybe)
+import           System.Posix.Env                   (getEnv)
+
 import qualified Data.Map                           as M
 import           Data.Ratio
 
-import           System.Taffybar.Support.PagerHints (pagerHints)
 import           XMonad
 import           XMonad.Actions.CycleWS
 import           XMonad.Hooks.EwmhDesktops          (ewmh)
@@ -23,6 +25,18 @@ import           XMonad.Layout.WindowNavigation
 
 import           XMonad.Util.EZConfig               (additionalKeys,
                                                      additionalKeysP)
+
+import           XMonad.Config.Desktop
+import           XMonad.Config.Gnome
+import           XMonad.Config.Kde
+import           XMonad.Config.Xfce
+import           XMonad.Hooks.SetWMName
+
+desktop "gnome"       = gnomeConfig
+desktop "kde"         = kde4Config
+desktop "xfce"        = xfceConfig
+desktop "xmonad-mate" = gnomeConfig
+desktop _             = desktopConfig
 
 altMask    = mod1Mask
 myModMask  = mod4Mask
@@ -55,15 +69,16 @@ myManageHook = composeAll [
   , manageHook def
   ]
 
-myStartupHook = do
-  spawn "setxkbmap -option caps:super"
-  spawn "~/.local/bin/my-taffybar"
-  spawn "compton -b"
-  spawn "nm-applet"
-  spawn "~/.fehbg"
-  spawn "xscreensaver -no-splasph"
+-- myStartupHook = do
+--   -- spawn "setxkbmap -option caps:super"
+--   -- spawn "~/.local/bin/my-taffybar"
+--   spawn "compton -b"
+--   -- spawn "nm-applet"
+--   -- spawn "~/.fehbg"
+--   -- spawn "xscreensaver -no-splasph"
 
-main =
+main = do
+  session <- getEnv "DESKTOP_SESSION"
   xmonad $
 
        -- docks allows xmonad to handle taffybar
@@ -71,15 +86,14 @@ main =
 
        -- gives taffybar logger information
        ewmh $
-       pagerHints
 
        -- xmonad config
-       defaultConfig {
+       (maybe desktopConfig desktop session) {
          modMask = myModMask
        , terminal = myTerminal
        , manageHook = myManageHook
        , layoutHook = myLayoutHook
-       , startupHook = myStartupHook
+       -- , startupHook = myStartupHook
        --, logHook = dbusLogWithPP client pp
        } `additionalKeysP`
         [ ("<XF86AudioRaiseVolume>", spawn "amixer -q set Master 5%+")
