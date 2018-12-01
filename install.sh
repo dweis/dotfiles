@@ -1,8 +1,8 @@
 #!/bin/sh
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-mkdir -p ~/.config
 mkdir -p ~/.config/Code
+mkdir -p ~/.stack
 
 ln -s ${DIR}/dircolors ~/.dircolors
 ln -s ${DIR}/git/gitconfig ~/.gitconfig
@@ -19,3 +19,5 @@ ln -s ${DIR}/rofi ~/.config/rofi
 ln -s ${DIR}/compton/compton.conf ~/.config/compton.conf
 ln -s ${DIR}/hyperjs/hyper.js ~/.hyper.js
 ln -s ${DIR}/Code/User ~/.config/Code/User
+ln -s ${DIR}/bash/profile ~/.profile
+ln -s ${DIR}/stack/config.yaml ~/.stack/config.yaml

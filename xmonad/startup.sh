@@ -5,7 +5,7 @@ PATH=/home/derrick/.local/bin:$PATH
 # Taffybar
 if [ -z "$(pgrep taffybar)" ] ; then
   echo "Starting taffybar"
-  taffybar &
+  my-taffybar &
 fi
 
 # Wallpaper
