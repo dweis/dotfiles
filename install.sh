@@ -11,7 +11,7 @@ ln -s ${DIR}/vim/vim/init.vim ~/.vimrc
 ln -s ${DIR}/zsh/zshrc ~/.zshrc
 ln -s ${DIR}/spacemacs/spacemacs ~/.spacemacs
 ln -s ${DIR}/xmonad ~/.xmonad
-ln -s ${DIR}/taffybar ~/.config/taffybar
+ln -s ${DIR}/my-taffybar ~/.config/taffybar
 ln -s ${DIR}/termite ~/.config/termite
 ln -s ${DIR}/xscreensaver/xscreensaver ~/.xscreensaver
 ln -s ${DIR}/rofi ~/.config/rofi

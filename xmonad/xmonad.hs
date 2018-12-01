@@ -56,12 +56,7 @@ myManageHook = composeAll [
   ]
 
 myStartupHook = do
-  spawn "setxkbmap -option caps:super"
-  spawn "~/.local/bin/my-taffybar"
-  spawn "compton -b"
-  spawn "nm-applet"
-  spawn "~/.fehbg"
-  spawn "xscreensaver -no-splasph"
+  spawn "~/.xmonad/startup.sh"
 
 main =
   xmonad $

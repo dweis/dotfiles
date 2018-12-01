@@ -46,7 +46,23 @@ module.exports = {
     borderColor: '#333',
 
     // custom CSS to embed in the main window
-    css: '',
+    css: `
+      .terms_19b1ydh {
+        margin-top: 20px;
+      }
+      .header_windowHeader {
+        display: none;
+      }
+      .tabs_nav {
+        top: 0;
+      }
+      .terms_terms {
+        margin-top: 0;
+      }
+      .terms_termsShifted {
+        margin-top: 30px;
+      }
+    `,
 
     // custom CSS to embed in the terminal window
     termCSS: '',
@@ -61,7 +77,7 @@ module.exports = {
     showWindowControls: false,
 
     // custom padding (CSS format, i.e.: `top right bottom left`)
-    padding: '0px 0px 0px 0px',
+    padding: '0px 0px -35px -3px',
 
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
@@ -132,7 +148,8 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-  'hyper-dracula'
+    'hyper-dracula',
+    "hyper-tabs-enhanced"
   ],
 
   // in development, you can create a directory under

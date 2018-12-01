@@ -1,37 +1,39 @@
 #!/bin/sh
 
+PATH=/home/derrick/.local/bin:$PATH
+
 # Taffybar
 if [ -z "$(pgrep taffybar)" ] ; then
-     my-taffybar &
+  echo "Starting taffybar"
+  taffybar &
 fi
-
-# Redshift
-#if [ -z "$(pgrep redshift)" ] ; then
-#    redshift &
-#fi
-
-# Autolock
-# if [ -z "$(pgrep xautolock)" ] ; then
-    # xautolock -time 1 -locker "if ! grep 'RUNNING' /proc/asound/card*/pcm*/sub*/status;then xscreensaver-command -lock; else echo 'Sound on'; fi"
-# fi
 
 # Wallpaper
 if [ -x $HOME/.fehbg ] ; then
+  echo "Setting wallpaper"
   $HOME/.fehbg
 fi
 
 # Screensaver
 if [ -z "$(pgrep xscreensaver)" ] ; then
-    xscreensaver -no-splash &
+  echo "Starting xscreensaver"
+  xscreensaver -no-splash &
 fi
 
 # compton
 if [ -z "$(pgrep compton)" ] ; then
-    compton -b &
+  echo "Starting compton"
+  compton -b &
 fi
 
 # Network Applet
 if [ -z "$(pgrep nm-applet)" ] ; then
-    nm-applet &
+  echo "starting nm-applet"
+  nm-applet &
 fi
 
+# Slack
+if [ -z "$(pgrep slack)" ] ; then
+  echo "starting Slack"
+  slack &
+fi

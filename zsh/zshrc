@@ -25,3 +25,5 @@ else
   export CLICOLORS=1
   export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 fi
+
+alias fonts='fc-list | cut -f2 -d: | sort -u'
