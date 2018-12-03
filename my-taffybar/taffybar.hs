@@ -20,6 +20,7 @@ green1 = (0, 1, 0, 1)
 green2 = (1, 0, 1, 0.5)
 taffyBlue = (0.129, 0.588, 0.953, 1)
 
+myGraphConfig :: GraphConfig
 myGraphConfig =
   defaultGraphConfig
   { graphPadding = 0
@@ -28,16 +29,19 @@ myGraphConfig =
   , graphBackgroundColor = transparent
   }
 
+netCfg :: GraphConfig
 netCfg = myGraphConfig
   { graphDataColors = [yellow1, yellow2]
   , graphLabel = Just "net"
   }
 
+memCfg :: GraphConfig
 memCfg = myGraphConfig
   { graphDataColors = [taffyBlue]
   , graphLabel = Just "mem"
   }
 
+cpuCfg :: GraphConfig
 cpuCfg = myGraphConfig
   { graphDataColors = [green1, green2]
   , graphLabel = Just "cpu"
@@ -48,10 +52,12 @@ memCallback = do
   mi <- parseMeminfo
   return [memoryUsedRatio mi]
 
+cpuCallback :: IO [Double]
 cpuCallback = do
   (_, systemLoad, totalLoad) <- cpuLoad
   return [totalLoad, systemLoad]
 
+main :: IO()
 main = do
   let myWorkspacesConfig =
         defaultWorkspacesConfig
@@ -73,8 +79,8 @@ main = do
         { startWidgets =
             workspaces : map (>>= buildContentsBox) [ layout, windows ]
         , endWidgets = map (>>= buildContentsBox)
-          [ -- batteryIconNew,
-            clock
+          [ batteryIconNew
+          , clock
           , tray
           , cpu
           , mem
