@@ -1,5 +1,5 @@
-vim/vim/plugged/*
-vim/vim/.netrwhist
+vim/.vim/plugged/*
+vim/.vim/.netrwhist
 xmonad/xmonad.errors
 xmonad/xmonad.hi
 xmonad/xmonad.o

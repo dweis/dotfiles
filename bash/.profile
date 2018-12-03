@@ -3,3 +3,5 @@ export PATH="/home/derrick/bin:/home/derrick/.local/bin:$PATH"
 export LANG=en_US.UTF-8
 
 export EDITOR=vim
+
+eval `dircolors ~/.dircolors`

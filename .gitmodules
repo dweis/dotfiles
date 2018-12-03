@@ -1,9 +1,9 @@
 [submodule "taffybar/taffybar"]
-	path = my-taffybar/taffybar
+	path = my-taffybar/.config/taffybar/taffybar
 	url = https://github.com/taffybar/taffybar
 [submodule "xmonad/xmonad"]
-	path = xmonad/xmonad
+	path = xmonad/.xmonad/xmonad
 	url = https://github.com/xmonad/xmonad
 [submodule "xmonad/xmonad-contrib"]
-	path = xmonad/xmonad-contrib
+	path = xmonad/.xmonad/xmonad-contrib
 	url = https://github.com/xmonad/xmonad-contrib

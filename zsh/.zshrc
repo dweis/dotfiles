@@ -20,7 +20,7 @@ export EDITOR=vim
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 if whence dircolors >/dev/null; then
-  eval `dircolors ~/.dircolors/dircolors.256dark`
+  eval `dircolors ~/.dircolors`
 else
   export CLICOLORS=1
   export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
