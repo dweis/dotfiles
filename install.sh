@@ -4,7 +4,7 @@ stow -t $HOME bash
 stow -t $HOME compton
 stow -t $HOME git
 stow -t $HOME i3
-stow -t $HOME my-taffybar
+stow -t $HOME taffybar
 stow -t $HOME spacemacs
 stow -t $HOME termite
 stow -t $HOME vim
