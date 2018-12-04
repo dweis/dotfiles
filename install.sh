@@ -17,3 +17,5 @@ stow -t $HOME stack
 stow -t $HOME tmux
 stow -t $HOME xmonad
 stow -t $HOME zsh
+
+./scripts/vscode-install-extensions.sh
