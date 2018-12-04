@@ -27,3 +27,5 @@ else
 fi
 
 alias fonts='fc-list | cut -f2 -d: | sort -u'
+
+alias nix-search="nix-env -qaP '*' | grep"
