@@ -1,4 +1,4 @@
 rofi.combi-modi:    window,drun,ssh
-rofi.theme:         solarized
+rofi.theme:         dracula
 rofi.font:          hack 14
 rofi.modi:          combi

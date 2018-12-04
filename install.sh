@@ -1,4 +1,5 @@
 #!/bin/sh
+stow -t $HOME alacritty
 stow -t $HOME bash
 stow -t $HOME compton
 stow -t $HOME git

@@ -28,9 +28,10 @@ Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'purescript-contrib/purescript-vim', { 'for': 'purescript' }
 Plug 'FrigoEU/psc-ide-vim', { 'for': 'purescript' }
-Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
-Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-Plug 'godlygeek/tabular', { 'for': 'haskell' }
+" Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+" Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+" Plug 'godlygeek/tabular', { 'for': 'haskell' }
+Plug 'LnL7/vim-nix', { 'for': 'nix' }
 call plug#end()
 
 set number
