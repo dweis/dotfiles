@@ -18,5 +18,9 @@ stow -t $HOME tmux
 stow -t $HOME xmonad
 stow -t $HOME zsh
 stow -t $HOME nixpkgs
+stow -t $HOME face
 
 ./scripts/vscode-install-extensions.sh
+
+#dconf write /org/mate/desktop/session/required-components/windowmanager "'i3'"
+dconf write /org/mate/desktop/background/show-desktop-icons "false"
