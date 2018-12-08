@@ -6,9 +6,6 @@ plugins=(git, vi-mode, aws)
 
 # User configuration
 
-# Enable vim keybindings
-bindkey -v
-
 export PATH="/home/derrick/bin:/home/derrick/.local/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -27,5 +24,8 @@ else
 fi
 
 alias fonts='fc-list | cut -f2 -d: | sort -u'
-
 alias nix-search="nix-env -qaP '*' | grep"
+
+# Enable vim keybindings
+bindkey -v
+

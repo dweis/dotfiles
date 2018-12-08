@@ -9,7 +9,7 @@ bindsym $mod+Shift+Return exec alacritty
 
 bindsym $mod+Shift+x kill
 
-bindsym $mod+p exec rofi -show run
+bindsym $mod+p exec rofi -show combi
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
