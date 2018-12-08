@@ -20,6 +20,9 @@ stack/.stack/global-project/*
 stack/.stack/indices/*
 stack/.stack/loaded-snapshot-cache/*
 stack/.stack/snapshots/*
+stack/.stack/precompiled/*
+stack/.stack/setup-exe-cache/*
+stack/.stack/setup-exe-src/*
 taffybar/.stack-work
 .stack-work
 *.swp
