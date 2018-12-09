@@ -28,4 +28,4 @@ alias nix-search="nix-env -qaP '*' | grep"
 
 # Enable vim keybindings
 bindkey -v
-
+bindkey '^R' history-incremental-search-backward

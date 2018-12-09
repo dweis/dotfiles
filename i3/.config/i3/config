@@ -9,12 +9,13 @@ bindsym $mod+Shift+Return exec alacritty
 
 bindsym $mod+Shift+x kill
 
-bindsym $mod+p exec rofi -show combi
+bindsym $mod+p exec rofi -show combi -lines 6
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
+bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -39,6 +40,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
+bindsym $mod+t layout toggle all
 
 bindsym $mod+Shift+space floating toggle
 
@@ -83,7 +85,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-bindsym $mod+Shift+c reload
+bindsym $mod+q reload
 bindsym $mod+Shift+r restart
 #bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+q exec "mate-session-save --logout-dialog"
