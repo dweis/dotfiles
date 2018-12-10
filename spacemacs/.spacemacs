@@ -153,7 +153,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Hack"
-                               :size 18
+                               :size 24
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -335,6 +335,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq flycheck-check-syntax-automatically '(mode-enabled save))
   (setq js2-mode-show-parse-errors nil js2-mode-show-strict-warnings nil)
+  (setq vc-follow-symlinks t)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
