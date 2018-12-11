@@ -16,6 +16,9 @@ stow -t $HOME tmux
 stow -t $HOME zsh
 stow -t $HOME nixpkgs
 stow -t $HOME face
+stow -t $HOME haskeline
+stow -t $HOME inputrc
+stow -t $HOME ghci
 #stow -t $HOME hyperjs
 #stow -t $HOME taffybar
 #stow -t $HOME xmonad
