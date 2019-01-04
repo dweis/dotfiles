@@ -29,3 +29,8 @@ alias nix-search="nix-env -qaP '*' | grep"
 # Enable vim keybindings
 bindkey -v
 bindkey '^R' history-incremental-search-backward
+
+if [ -n "$DESKTOP_SESSION" ]; then
+  eval $(gnome-keyring-daemon --start)
+  export SSH_AUTH_SOCK
+fi
