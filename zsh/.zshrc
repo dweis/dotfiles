@@ -25,6 +25,7 @@ fi
 
 alias fonts='fc-list | cut -f2 -d: | sort -u'
 alias nix-search="nix-env -qaP '*' | grep"
+alias nix-cleanup="sudo nix-collect-garbage -d && nix-store --optimize"
 
 # Enable vim keybindings
 bindkey -v
