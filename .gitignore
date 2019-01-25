@@ -23,6 +23,10 @@ stack/.stack/snapshots/*
 stack/.stack/precompiled/*
 stack/.stack/setup-exe-cache/*
 stack/.stack/setup-exe-src/*
+stack/.stack/docker.db
+stack/.stack/docker.db.lock
+stack/.stack/programs/*
+stack/.stack/templates/*
 taffybar/.stack-work
 .stack-work
 *.swp
