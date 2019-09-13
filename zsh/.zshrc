@@ -2,7 +2,8 @@ export ZSH=${HOME}/.oh-my-zsh
 
 ZSH_THEME="norm"
 
-plugins=(git, vi-mode, aws)
+#plugins=(git, vi-mode, aws)
+plugins=(aws)
 
 # User configuration
 
@@ -31,7 +32,7 @@ alias nix-cleanup="sudo nix-collect-garbage -d && nix-store --optimize"
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
-if [ -n "$DESKTOP_SESSION" ]; then
-  eval $(gnome-keyring-daemon --start)
-  export SSH_AUTH_SOCK
-fi
+#if [ -n "$DESKTOP_SESSION" ]; then
+#  eval $(gnome-keyring-daemon --start)
+#  export SSH_AUTH_SOCK
+#fi
