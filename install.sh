@@ -19,6 +19,7 @@ stow -t $HOME face
 stow -t $HOME haskeline
 stow -t $HOME inputrc
 stow -t $HOME ghci
+stow -t $HOME home-manager
 #stow -t $HOME hyperjs
 #stow -t $HOME taffybar
 #stow -t $HOME xmonad
