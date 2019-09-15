@@ -324,6 +324,7 @@ in {
       i3GapsSupport = true;
       alsaSupport = true;
       githubSupport = true;
+      pulseSupport = true;
       jsoncpp = pkgs.jsoncpp;
     };
     config = {
@@ -334,7 +335,7 @@ in {
       "bar/top" = {
         monitor = "\${env:MONITOR:eDP-1}";
         width = "100%";
-        height = 27;
+        height = "3%";
         offset-y = 5;
 
         background = color.background; #"#005f627a";
@@ -351,16 +352,18 @@ in {
         module-margin-right = 2;
 
         font-0 = "Hack:size=14;0";
-        #font-1 = "FontAwesome:size=8;-2";
+        font-1 = "FontAwesome:size=12;-2";
         #font-2 = "ypn envypn:size=10;-1";
         #font-3 = "Termsynu:size=8;-1";
         #font-4 = "Unifont:size=6;-3";
 
         modules-left = "i3";
         modules-center = "xwindow";
-        modules-right = "volume cpu memory clock";
+        modules-right = "cpu memory clock pulseaudio";
 
         tray-position = "right";
+        tray-maxsize = 28;
+        tray-scale = "1.0";
       };
       "module/date" = {
         type = "internal/date";
@@ -468,23 +471,39 @@ in {
         format-underline = "#ff63a5";
         format-overline = "#ff63a5";
       };
-      "module/volume" = {
-        type = "internal/volume";
-        speaker-mixer = "Speaker";
-        headphone-mixer = "Headphone";
-        headphone-id = 9;
-        format-volume-padding = 2;
-        format-volume-background = "#fff85a";
-        format-volume-foreground = "#43433a";
-        format-volume-underline = "#fffb8f";
-        format-volume-overline = "#fffb8f";
-        format-muted-padding = 2;
-        format-muted-background = "#77ffffff";
-        format-muted-foreground = "#666666";
-        label-volume = "volume %percentage%";
-        label-volume-font = 3;
-        label-muted = "sound muted";
-        label-muted-font = 3;
+      "module/pulseaudio" = {
+        type = "internal/pulseaudio";
+        use-ui-max = true;
+        interval = 5;
+        format-volume = "<ramp-volume> <label-volume> <bar-volume>";
+        ramp-volume-0 = "";
+        ramp-volume-1 = "";
+        ramp-volume-2 = "";
+        label-volume = "%percentage%%";
+        label-volume-foreground = color.foreground;
+
+        label-muted = " muted";
+        label-muted-foreground = color.cyan;
+
+        bar-volume-width = 10;
+        bar-volume-foreground-0 = color.pink;
+        bar-volume-foreground-1 = color.pink;
+        bar-volume-foreground-2 = color.pink;
+        bar-volume-foreground-3 = color.pink;
+        bar-volume-foreground-4 = color.pink;
+        bar-volume-foreground-5 = color.pink;
+        bar-volume-foreground-6 = color.pink;
+        bar-volume-foreground-7 = color.pink;
+        bar-volume-foreground-8 = color.pink;
+        bar-volume-foreground-9 = color.pink;
+        bar-volume-gradient = false;
+        bar-volume-indicator = 1;
+        bar-volume-indicator-font = 2;
+        bar-volume-fill = "─";
+        bar-volume-fill-font = 2;
+        bar-volume-empty = "─";
+        bar-volume-empty-font = 2;
+        bar-volume-empty-foreground = color.foreground;
       };
     };
     script = ''polybar top &'';
@@ -506,7 +525,7 @@ in {
       fonts = [ "Hack" "FontAwesome 12" ];
       keybindings = lib.mkOptionDefault {
         "${modifier}+Shift+Return" = "exec alacritty";
-        "${modifier}+Return" = "emacs";
+        "${modifier}+Return" = "exec emacs";
         "${modifier}+p" = ''exec "\${pkgs.rofi}/bin/rofi -show combi -lines 6"'';
         "${modifier}+x" = "kill";
         "${modifier}+h" = "focus left";
@@ -570,6 +589,7 @@ in {
       startup = [
         { command = "compton -b"; notification = false; }
         { command = "systemctl --user restart polybar"; always = true; notification = false; }
+        { command = "nm-applet"; notification = false; }
       ];
     };
     package = pkgs.i3-gaps;
