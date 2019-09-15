@@ -416,6 +416,7 @@ in {
         label-visible-padding = 2;
         label-visible-margin = 1;
         label-visible-font = 3;
+        index-sort = true;
       };
       "module/xwindow" = {
         type = "internal/xwindow";
