@@ -1,3 +1,4 @@
+{ hiDpi, mainDisplay }:
 { config, pkgs, lib, ... }:
 
 let
@@ -333,9 +334,9 @@ in {
         throttle-limit = 5;
       };
       "bar/top" = {
-        monitor = "\${env:MONITOR:eDP-1}";
+	monitor = "\${env:MONITOR:${mainDisplay}}";
         width = "100%";
-        height = "3%";
+        height = if hiDpi then "3%" else "1.5%";
         offset-y = 5;
 
         background = color.background; #"#005f627a";
@@ -362,7 +363,7 @@ in {
         modules-right = "cpu memory clock pulseaudio";
 
         tray-position = "right";
-        tray-maxsize = 28;
+        tray-maxsize = if hiDpi then 28 else 16;
         tray-scale = "1.0";
       };
       "module/date" = {
@@ -506,7 +507,11 @@ in {
         bar-volume-empty-foreground = color.foreground;
       };
     };
-    script = ''polybar top &'';
+    script = ''
+      for m in $(polybar -m | cut -d ':' -f 1); do
+        MONITOR=$m polybar top &
+      done
+    '';
   };
 
   xsession.windowManager.i3 = let
