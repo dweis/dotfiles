@@ -318,6 +318,20 @@ in {
         nix-cleanup = "nix-collect-garbage -d && nix-store --optimize";
       };
     };
+
+    vscode = {
+      enable = true;
+      userSettings = {
+        "editor.fontFamily" = "Hack, 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'";
+        "workbench.colorTheme" = "Dracula Soft";
+        "editor.minimap.enabled" = false;
+        "update.channel" = "none";
+      };
+      extensions = with pkgs.vscode-extensions; [
+        bbenoist.Nix
+        vscodevim.vim
+      ];
+    };
   };
 
   services.polybar = {
