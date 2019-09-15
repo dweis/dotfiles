@@ -32,6 +32,7 @@ let
     brightCyan = "#9aedfe";
     brightWhite = "#e6e6e6";
   };
+  fontSize = if hiDpi then 14 else 10;
 in {
   home = {
     packages = with pkgs; [
@@ -177,7 +178,7 @@ in {
           italic = {
             family = "Hack";
           };
-          size = 14.0;
+          size = fontSize;
         };
         draw_bold_text_with_bright_colors = true;
         colors = {
@@ -334,7 +335,7 @@ in {
         throttle-limit = 5;
       };
       "bar/top" = {
-	monitor = "\${env:MONITOR:${mainDisplay}}";
+        monitor = "\${env:MONITOR:${mainDisplay}}";
         width = "100%";
         height = if hiDpi then "3%" else "1.5%";
         offset-y = 5;
@@ -352,7 +353,7 @@ in {
         module-margin-left = 0;
         module-margin-right = 2;
 
-        font-0 = "Hack:size=14;0";
+        font-0 = "Hack:size=${toString fontSize};0";
         font-1 = "FontAwesome:size=12;-2";
         #font-2 = "ypn envypn:size=10;-1";
         #font-3 = "Termsynu:size=8;-1";
@@ -507,11 +508,7 @@ in {
         bar-volume-empty-foreground = color.foreground;
       };
     };
-    script = ''
-      for m in $(polybar -m | cut -d ':' -f 1); do
-        MONITOR=$m polybar top &
-      done
-    '';
+    script = "polybar top &";
   };
 
   xsession.windowManager.i3 = let
