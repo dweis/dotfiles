@@ -334,6 +334,18 @@ in {
     };
   };
 
+  services.compton = {
+    enable = true;
+    backend = "glx";
+    blur = true;
+    shadow = true;
+    extraOptions = ''
+      paint-on-overlay = true;
+      glx-no-stencil = true;
+      glx-no-rebind-pixmap = true;
+    '';
+  };
+
   services.polybar = {
     enable = true;
     package = pkgs.polybar.override {
@@ -375,11 +387,25 @@ in {
 
         modules-left = "i3";
         modules-center = "xwindow";
-        modules-right = "cpu memory clock pulseaudio";
+        modules-right = "cpu memory clock pulseaudio backlight";
 
         tray-position = "right";
         tray-maxsize = if hiDpi then 28 else 16;
         tray-scale = "1.0";
+      };
+      "module/backlight" = {
+        type = "internal/backlight";
+        format = "<label> <ramp> <bar>";
+        card = "intel_backlight";
+        ramp-0 = "🌕";
+        ramp-1 = "🌔";
+        ramp-2 = "🌓";
+        ramp-3 = "🌒";
+        ramp-4 = "🌑";
+        bar-width = 10;
+        bar-indicator = "|";
+        bar-fill = "─";
+        bar-empty = "─";
       };
       "module/date" = {
         type = "internal/date";
@@ -493,13 +519,16 @@ in {
         use-ui-max = true;
         interval = 5;
         format-volume = "<ramp-volume> <label-volume> <bar-volume>";
-        ramp-volume-0 = "";
-        ramp-volume-1 = "";
-        ramp-volume-2 = "";
+        label-muted = "🔇 muted";
+
+        ramp-volume-0 = "🔈";
+        ramp-volume-1 = "🔉";
+        ramp-volume-2 = "🔊";
+        ramp-font = 2;
+
         label-volume = "%percentage%%";
         label-volume-foreground = color.foreground;
 
-        label-muted = " muted";
         label-muted-foreground = color.cyan;
 
         bar-volume-width = 10;
@@ -514,10 +543,10 @@ in {
         bar-volume-foreground-8 = color.pink;
         bar-volume-foreground-9 = color.pink;
         bar-volume-gradient = false;
-        bar-volume-indicator = 1;
         bar-volume-indicator-font = 2;
-        bar-volume-fill = "─";
         bar-volume-fill-font = 2;
+        bar-volume-indicator = "|";
+        bar-volume-fill = "─";
         bar-volume-empty = "─";
         bar-volume-empty-font = 2;
         bar-volume-empty-foreground = color.foreground;
