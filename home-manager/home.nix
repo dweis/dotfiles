@@ -34,10 +34,16 @@ let
   };
   fontSize = if hiDpi then 14 else 10;
 in {
+  fonts.fontconfig.enable = true;
+
   home = {
     packages = with pkgs; [
       noto-fonts
+      font-awesome-ttf
+      material-icons
     ];
+
+
 
     file.".config/rofi/dracula.rasi".text = ''
       // Dracula colors
@@ -380,14 +386,12 @@ in {
         module-margin-right = 2;
 
         font-0 = "Hack:size=${toString fontSize};0";
-        font-1 = "FontAwesome:size=12;-2";
-        #font-2 = "ypn envypn:size=10;-1";
-        #font-3 = "Termsynu:size=8;-1";
-        #font-4 = "Unifont:size=6;-3";
+        font-1 = "FontAwesome:size=24;4";
+        font-2 = "Material Icons:size=24;4";
 
         modules-left = "i3";
         modules-center = "xwindow";
-        modules-right = "cpu memory clock pulseaudio backlight";
+        modules-right = "cpu memory clock pulseaudio backlight battery";
 
         tray-position = "right";
         tray-maxsize = if hiDpi then 28 else 16;
@@ -395,9 +399,9 @@ in {
       };
       "module/backlight" = {
         type = "internal/backlight";
-        format = "<label> <ramp> <bar>";
+        format = "<ramp> <label>";
         card = "intel_backlight";
-        ramp-0 = "🌕";
+        ramp-0 = "🌔";
         ramp-1 = "🌔";
         ramp-2 = "🌓";
         ramp-3 = "🌒";
@@ -421,7 +425,7 @@ in {
         label-focused = "%index%";
         label-focused-padding = 2;
         label-focused-margin = 1;
-        label-focused-font = 3;
+        label-focused-font = 1;
         label-focused-foreground = "#fff";
         label-focused-background = "#2fbbf2";
         label-focused-overline = "#148ebe";
@@ -433,20 +437,20 @@ in {
         label-unfocused-foreground = "#dd222222";
         label-unfocused-overline = "#c5c5c5";
         label-unfocused-underline = "#c5c5c5";
-        label-unfocused-font = 3;
+        label-unfocused-font = 1;
         label-urgent = "%index%";
         label-urgent-padding = 2;
         label-urgent-margin = 1;
-        label-urgent-font = 3;
+        label-urgent-font = 1;
         label-visible = "%index%";
         label-visible-padding = 2;
         label-visible-margin = 1;
-        label-visible-font = 3;
+        label-visible-font = 1;
         index-sort = true;
       };
       "module/xwindow" = {
         type = "internal/xwindow";
-        label-font = 3;
+        label-font = 1;
       };
       "module/cpu" = {
         interval = "0.5";
@@ -457,30 +461,30 @@ in {
         format-overline = "#60eaa5";
         format-padding = 2;
         label = "cpu";
-        label-font = 3;
+        label-font = 1;
         ramp-coreload-0 = "▁";
-        ramp-coreload-0-font = 5;
+        ramp-coreload-0-font = 1;
         ramp-coreload-0-foreground = "#000000";
         ramp-coreload-1 = "▂";
-        ramp-coreload-1-font = 5;
+        ramp-coreload-1-font = 1;
         ramp-coreload-1-foreground = "#000000";
         ramp-coreload-2 = "▃";
-        ramp-coreload-2-font = 5;
+        ramp-coreload-2-font = 1;
         ramp-coreload-2-foreground = "#000000";
         ramp-coreload-3 = "▄";
-        ramp-coreload-3-font = 5;
+        ramp-coreload-3-font = 1;
         ramp-coreload-3-foreground = "#000000";
         ramp-coreload-4 = "▅";
-        ramp-coreload-4-font = 5;
+        ramp-coreload-4-font = 1;
         ramp-coreload-4-foreground = "#ffffff";
         ramp-coreload-5 = "▆";
-        ramp-coreload-5-font = 5;
+        ramp-coreload-5-font = 1;
         ramp-coreload-5-foreground = "#ffffff";
         ramp-coreload-6 = "▇";
-        ramp-coreload-6-font = 5;
+        ramp-coreload-6-font = 1;
         ramp-coreload-6-foreground = "#ff3b51";
         ramp-coreload-7 = "█";
-        ramp-coreload-7-font = 5;
+        ramp-coreload-7-font = 1;
         ramp-coreload-7-foreground = "#ff3b51";
         type = "internal/cpu";
       };
@@ -493,38 +497,69 @@ in {
         format-underline = "#e58de6";
         format-overline = "#e58de6";
         label = "memory";
-        label-font = 3;
+        label-font = 1;
         bar-used-width = 10;
         bar-used-indicator = "|";
-        bar-used-indicator-font = 4;
+        bar-used-indicator-font = 1;
         bar-used-indicator-foreground = "#ffaaf5";
         bar-used-fill = "─";
-        bar-used-fill-font = 4;
+        bar-used-fill-font = 1;
         bar-used-fill-foreground = "#ffaaf5";
         bar-used-empty = "─";
-        bar-used-empty-font = 4;
+        bar-used-empty-font = 1;
         bar-used-empty-foreground = "#934e94";
       };
       "module/clock" = {
         type = "internal/date";
-        date = "%%{T3}%Y-%m-%d %H:%M%%{T-}";
+        #date = "%%{T3}%Y-%m-%d %H:%M%%{T-}";
         format-padding = 2;
+        label = "%time%";
+        time = " %H:%M %p";
+        time-alt = " %Y-%m-%d";
         format-background = "#ff4279";
         format-foreground = "#ffcddc";
         format-underline = "#ff63a5";
         format-overline = "#ff63a5";
       };
+      "module/battery" = {
+        type = "internal/battery";
+        battery = "BAT0";
+        adapter = "AC";
+        full-at = 96;
+        time-format = "%H:%M";
+        format-charging = "<animation-charging> <label-charging>";
+        label-charging = "%percentage%%";
+        format-discharging = "<ramp-capacity> <label-discharging>";
+        label-discharging = "%percentage%%";
+        format-full = "<label-full>";
+        format-full-prefix = " ";
+        ramp-capacity-0 = "";
+        ramp-capacity-1 = "";
+        ramp-capacity-2 = "";
+        ramp-capacity-3 = "";
+        ramp-capacity-4 = "";
+        ramp-capacity-0-foreground = color.red;
+        ramp-capacity-foreground = color.foreground;
+        bar-capacity-width = 10;
+        animation-charging-0 = "";
+        animation-charging-1 = "";
+        animation-charging-2 = "";
+        animation-charging-3 = "";
+        animation-charging-4 = "";
+
+        animation-charging-framerate = 750;
+      };
       "module/pulseaudio" = {
         type = "internal/pulseaudio";
         use-ui-max = true;
         interval = 5;
-        format-volume = "<ramp-volume> <label-volume> <bar-volume>";
-        label-muted = "🔇 muted";
+        format-volume = "<ramp-volume> <label-volume>";
+        label-muted = " mute";
 
-        ramp-volume-0 = "🔈";
-        ramp-volume-1 = "🔉";
-        ramp-volume-2 = "🔊";
-        ramp-font = 2;
+        ramp-volume-0 = "";
+        ramp-volume-1 = "";
+        ramp-volume-2 = "";
+        ramp-font = 1;
 
         label-volume = "%percentage%%";
         label-volume-foreground = color.foreground;
@@ -543,12 +578,12 @@ in {
         bar-volume-foreground-8 = color.pink;
         bar-volume-foreground-9 = color.pink;
         bar-volume-gradient = false;
-        bar-volume-indicator-font = 2;
-        bar-volume-fill-font = 2;
+        bar-volume-indicator-font = 1;
+        bar-volume-fill-font = 1;
         bar-volume-indicator = "|";
         bar-volume-fill = "─";
         bar-volume-empty = "─";
-        bar-volume-empty-font = 2;
+        bar-volume-empty-font = 1;
         bar-volume-empty-foreground = color.foreground;
       };
     };
