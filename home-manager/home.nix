@@ -222,8 +222,10 @@ in {
       userEmail = "${email}";
     };
 
-    vim = {
+    neovim = {
       enable = true;
+      viAlias = true;
+      vimAlias = true;
       extraConfig =
         ''
         set number
@@ -247,7 +249,7 @@ in {
 
         set cmdheight=1
 
-        colorscheme dracula
+        colorscheme gruvbox
 
         " -- Supertab
         let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
@@ -280,12 +282,12 @@ in {
           ctrlp
           deoplete-nvim
           editorconfig-vim
+          gruvbox
           nerdcommenter
           nerdtree
           supertab
           vim-scala
           vim-plug
-          vim # dracula
         ];
     };
 
