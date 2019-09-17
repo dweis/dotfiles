@@ -33,6 +33,7 @@ let
     brightWhite = "#e6e6e6";
   };
   fontSize = if hiDpi then 14 else 10;
+  monospaceFont = "Hack";
 in {
   fonts.fontconfig.enable = true;
 
@@ -43,7 +44,26 @@ in {
       material-icons
     ];
 
+    file.".stack/config.yaml".text = ''
+      templates:
+        params:
+          author-name: ${name}
+          author-email: ${email}
+          github-username: ${githubUsername}
+    '';
 
+    file.".ghci".text = ''
+      :set editor ~/.nix-profile/bin/vi
+    '';
+
+    file.".haskeline".text = ''
+      editMode: Vi
+    '';
+
+    file.".inputrc".text = ''
+      set editing-mode vi
+      set keymap vi
+    '';
 
     file.".config/rofi/dracula.rasi".text = ''
       // Dracula colors
@@ -176,13 +196,13 @@ in {
         };
         font = {
           normal = {
-            family = "Hack";
+            family = monospaceFont;
           };
           bold = {
-            family = "Hack";
+            family = monospaceFont;
           };
           italic = {
-            family = "Hack";
+            family = monospaceFont;
           };
           size = fontSize;
         };
@@ -275,6 +295,7 @@ in {
         '';
 
         plugins = with pkgs.vimPlugins; [
+          vim-plug
           sensible
           airline
           vim-nix
@@ -295,7 +316,7 @@ in {
       enable = true;
       terminal = "\${pkgs.alacritty}/bin/alacritty";
       theme = "dracula";
-      font = "Hack 16";
+      font = "${monospaceFont} 16";
       extraConfig = ''
         rofi.modi: combi
         rofi.drun-icon-theme: Numix Square
@@ -325,20 +346,6 @@ in {
         nix-search = "nix-env -qaP '*' | grep";
         nix-cleanup = "nix-collect-garbage -d && nix-store --optimize";
       };
-    };
-
-    vscode = {
-      enable = true;
-      userSettings = {
-        "editor.fontFamily" = "Hack, 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'";
-        "workbench.colorTheme" = "Dracula Soft";
-        "editor.minimap.enabled" = false;
-        "update.channel" = "none";
-      };
-      extensions = with pkgs.vscode-extensions; [
-        bbenoist.Nix
-        vscodevim.vim
-      ];
     };
   };
 
@@ -608,10 +615,10 @@ in {
         urgent = { background  = color.yellow; border  = color.yellow; childBorder = color.darkGray; indicator = color.pink; text = color.foreground; };
         placeholder = { background = color.background; border = color.background; childBorder = color.background; indicator = color.background; text = color.foreground; };
       };
-      fonts = [ "Hack" "FontAwesome 12" ];
+      fonts = [ monospaceFont "FontAwesome 12" ];
       keybindings = lib.mkOptionDefault {
         "${modifier}+Shift+Return" = "exec alacritty";
-        "${modifier}+Return" = "exec emacs";
+        "${modifier}+Return" = "exec alacritty";
         "${modifier}+p" = ''exec "\${pkgs.rofi}/bin/rofi -show combi -lines 6"'';
         "${modifier}+x" = "kill";
         "${modifier}+h" = "focus left";
