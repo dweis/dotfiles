@@ -2,46 +2,58 @@
 { config, pkgs, lib, ... }:
 
 let
-  name = "Derrick Weis";
-  email = "derrick@derrickweis.com";
-  githubUsername = "dweis";
-  color = {
-    # Dracula - https://github.com/dracula/dracula-theme
-    background = "#282a36";
-    currentLine = "#44475a";
-    selection = "#44475a";
-    foreground = "#f8f8f2";
-    comment = "#6272a4";
-    cyan = "#8be9fd";
-    green = "#50fa7b";
-    orange = "#ffb86c";
-    pink = "#ff79c6";
-    purple = "#bd93f9";
-    red = "#ff5555";
-    yellow = "#f1fa8c";
-    # extra
-    darkGray = "#040404";
-    white = "#bfbfbf";
-    black = "#000000";
-    blue = "#caa9fa";
-    brightRed = "#ff6e67";
-    brightGreen = "#5af78e";
-    brightYellow = "#f4f99d";
-    brightBlue = "#caa9fa";
-    brightMagenta = "#ff92d0";
-    brightCyan = "#9aedfe";
-    brightWhite = "#e6e6e6";
+  config = {
+    name = "Derrick Weis";
+    email = "derrick@derrickweis.com";
+    githubUsername = "dweis";
+    color = {
+      # Dracula - https://github.com/dracula/dracula-theme
+      background = "#282a36";
+      currentLine = "#44475a";
+      selection = "#44475a";
+      foreground = "#f8f8f2";
+      comment = "#6272a4";
+      cyan = "#8be9fd";
+      green = "#50fa7b";
+      orange = "#ffb86c";
+      pink = "#ff79c6";
+      purple = "#bd93f9";
+      red = "#ff5555";
+      yellow = "#f1fa8c";
+      # extra
+      darkGray = "#040404";
+      white = "#bfbfbf";
+      black = "#000000";
+      blue = "#caa9fa";
+      brightRed = "#ff6e67";
+      brightGreen = "#5af78e";
+      brightYellow = "#f4f99d";
+      brightBlue = "#caa9fa";
+      brightMagenta = "#ff92d0";
+      brightCyan = "#9aedfe";
+      brightWhite = "#e6e6e6";
+    };
+    fontSize = if hiDpi then 14 else 10;
+    monospaceFont = "Hack";
   };
-  fontSize = if hiDpi then 14 else 10;
-  monospaceFont = "Hack";
-in {
+in with config; {
   fonts.fontconfig.enable = true;
 
   home = {
     packages = with pkgs; [
+      # For home-manager
       noto-fonts
       font-awesome-ttf
-      material-icons
+      # Additional fonts
+      inconsolata
+      terminus_font
+      proggyfonts
+      dejavu_fonts
+      powerline-fonts
+      source-code-pro
+      source-sans-pro
+      source-serif-pro
+      emojione
     ];
 
     file.".stack/config.yaml".text = ''

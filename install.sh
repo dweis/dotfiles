@@ -5,7 +5,6 @@ stow -t $HOME compton
 stow -t $HOME git
 stow -t $HOME i3
 stow -t $HOME spacemacs
-stow -t $HOME termite
 stow -t $HOME vim
 stow -t $HOME xscreensaver
 stow -t $HOME Code
@@ -20,11 +19,6 @@ stow -t $HOME haskeline
 stow -t $HOME inputrc
 stow -t $HOME ghci
 stow -t $HOME home-manager
-#stow -t $HOME hyperjs
-#stow -t $HOME taffybar
-#stow -t $HOME xmonad
-
-./scripts/vscode-install-extensions.sh
 
 dconf write /org/mate/desktop/background/show-desktop-icons "false"
 dconf write /apps/light-locker/lock-on-suspend "false" # avoid double lock screen with lightdm + mate lock screen

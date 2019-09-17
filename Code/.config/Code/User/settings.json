@@ -1,6 +1,0 @@
-{
-    "editor.fontFamily": "Hack, 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "workbench.colorTheme": "Dracula Soft",
-    "editor.minimap.enabled": false,
-    "C_Cpp.updateChannel": "Insiders"
-}
