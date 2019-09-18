@@ -33,8 +33,9 @@ let
       brightCyan = "#9aedfe";
       brightWhite = "#e6e6e6";
     };
-    fontSize = if hiDpi then 14 else 10;
+    fontSize = if hiDpi then 15 else 10;
     monospaceFont = "Hack";
+    uiFont = "Noto Sans";
   };
 in with config; {
   fonts.fontconfig.enable = true;
@@ -44,6 +45,7 @@ in with config; {
       # For home-manager
       noto-fonts
       font-awesome-ttf
+      material-icons
       # Additional fonts
       inconsolata
       terminus_font
@@ -390,34 +392,31 @@ in with config; {
       "bar/main" = {
         monitor = "\${env:MONITOR:${mainDisplay}}";
         width = "100%";
-        height = if hiDpi then "3%" else "1.5%";
+        height = if hiDpi then "48" else "24";
         offset-y = 5;
         bottom = true;
 
         background = color.background;
         foreground = color.foreground;
 
-        overline-size = 2;
-        overline-color = color.cyan;
-        underline-size = 2;
-        underline-color = color.cyan;
-
         spacing = 1;
         padding-right = 2;
         module-margin-left = 0;
         module-margin-right = 2;
 
-        font-0 = "Noto Sans:size=${toString fontSize};0";
+        font-0 = "${uiFont}:style=Bold,size=${toString fontSize};0";
         font-1 = "Material Icons:size=${toString (fontSize * 1.5)};4";
         font-2 = "FontAwesome:size=${toString (fontSize * 1.5)};4";
 
         modules-left = "i3";
         modules-center = "xwindow";
-        modules-right = "cpu memory clock pulseaudio backlight battery";
+        modules-right = "cpu memory backlight battery pulseaudio clock";
 
         tray-position = "right";
-        tray-maxsize = if hiDpi then 28 else 16;
+        tray-maxsize = if hiDpi then 24 else 18;
         tray-scale = "1.0";
+        tray-offset-y = 5;
+        tray-offset-x = -1;
       };
       "module/backlight" = {
         type = "internal/backlight";
@@ -428,6 +427,8 @@ in with config; {
         ramp-2 = "🌓";
         ramp-3 = "🌒";
         ramp-4 = "🌑";
+        ramp-foreground = color.orange;
+        label-foreground = color.orange;
         bar-width = 10;
         bar-indicator = "|";
         bar-fill = "─";
@@ -439,6 +440,7 @@ in with config; {
         date = "%d.%m.%y";
         time = "%H:%M";
         label = "%time%  %date%";
+        label-foreground = color.yellow;
       };
       "module/i3" = {
         type = "internal/i3";
@@ -448,17 +450,13 @@ in with config; {
         label-focused-padding = 2;
         label-focused-margin = 1;
         label-focused-font = 1;
-        label-focused-foreground = color.foreground;
+        label-focused-foreground = color.background;
         label-focused-background = color.cyan;
-        label-focused-overline = color.pink;
-        label-focused-underline = color.pink;
         label-unfocused = "%index%";
         label-unfocused-padding = 2;
         label-unfocused-margin = 1;
-        label-unfocused-background = color.darkGray;
-        label-unfocused-foreground = color.foreground;
-        label-unfocused-overline = color.blue;
-        label-unfocused-underline = color.blue;
+        label-unfocused-background = color.background;
+        label-unfocused-foreground = color.pink;
         label-unfocused-font = 1;
         label-urgent = "%index%";
         label-urgent-padding = 2;
@@ -468,7 +466,7 @@ in with config; {
         label-visible-padding = 2;
         label-visible-margin = 1;
         label-visible-font = 1;
-        index-sort = true;
+        index-sort = false;
       };
       "module/xwindow" = {
         type = "internal/xwindow";
@@ -478,72 +476,66 @@ in with config; {
         type = "internal/cpu";
         interval = "0.5";
         format = "<label> <ramp-load>";
-        format-background = color.cyan;
-        format-foreground = color.darkGray;
-        format-underline = color.cyan;
-        format-overline = color.cyan;
+        format-foreground = color.cyan;
         format-padding = 2;
         label = "";
         label-font = 1;
         ramp-load-0 = "▁";
         ramp-load-0-font = 1;
-        ramp-load-0-foreground = color.darkGray;
+        ramp-load-0-foreground = color.cyan;
         ramp-load-1 = "▂";
         ramp-load-1-font = 1;
-        ramp-load-1-foreground = color.darkGray;
+        ramp-load-1-foreground = color.cyan;
         ramp-load-2 = "▃";
         ramp-load-2-font = 1;
-        ramp-load-2-foreground = color.darkGray;
+        ramp-load-2-foreground = color.cyan;
         ramp-load-3 = "▄";
         ramp-load-3-font = 1;
-        ramp-load-3-foreground = color.darkGray;
+        ramp-load-3-foreground = color.cyan;
         ramp-load-4 = "▅";
         ramp-load-4-font = 1;
-        ramp-load-4-foreground = color.foreground;
+        ramp-load-4-foreground = color.cyan;
         ramp-load-5 = "▆";
         ramp-load-5-font = 1;
-        ramp-load-5-foreground = color.foreground;
+        ramp-load-5-foreground = color.cyan;
         ramp-load-6 = "▇";
         ramp-load-6-font = 1;
-        ramp-load-6-foreground = color.pink;
+        ramp-load-6-foreground = color.cyan;
         ramp-load-7 = "█";
         ramp-load-7-font = 1;
-        ramp-load-7-foreground = color.pink;
+        ramp-load-7-foreground = color.cyan;
       };
       "module/memory" = {
         type = "internal/memory";
         format = "<label> <ramp-used>";
         label-font = 1;
         format-padding = 2;
-        format-background = color.purple;
-        format-foreground = color.darkGray;
-        format-underline = color.purple;
-        format-overline = color.purple;
+        format-foreground = color.purple;
         label = "";
         ramp-used-0 = "▁";
         ramp-used-0-font = 1;
-        ramp-used-0-foreground = color.darkGray;
+        ramp-used-0-foreground = color.purple;
         ramp-used-1 = "▂";
         ramp-used-1-font = 1;
-        ramp-used-1-foreground = color.darkGray;
+        ramp-used-1-foreground = color.purple;
         ramp-used-2 = "▃";
         ramp-used-2-font = 1;
-        ramp-used-2-foreground = color.darkGray;
+        ramp-used-2-foreground = color.purple;
         ramp-used-3 = "▄";
         ramp-used-3-font = 1;
-        ramp-used-3-foreground = color.darkGray;
+        ramp-used-3-foreground = color.purple;
         ramp-used-4 = "▅";
         ramp-used-4-font = 1;
-        ramp-used-4-foreground = color.foreground;
+        ramp-used-4-foreground = color.purple;
         ramp-used-5 = "▆";
         ramp-used-5-font = 1;
-        ramp-used-5-foreground = color.foreground;
+        ramp-used-5-foreground = color.purple;
         ramp-used-6 = "▇";
         ramp-used-6-font = 1;
-        ramp-used-6-foreground = color.pink;
+        ramp-used-6-foreground = color.purple;
         ramp-used-7 = "█";
         ramp-used-7-font = 1;
-        ramp-used-7-foreground = color.pink;
+        ramp-used-7-foreground = color.purple;
       };
       "module/clock" = {
         type = "internal/date";
@@ -551,32 +543,34 @@ in with config; {
         label = "%time% %date%";
         time = " %H:%M %p";
         date = " %Y-%m-%d";
-        format-background = color.pink;
-        format-foreground = color.darkGray;
-        format-underline = color.pink;
-        format-overline = color.pink;
+        label-foreground = color.pink;
       };
       "module/battery" = {
         type = "internal/battery";
         battery = "BAT0";
         adapter = "AC";
-        full-at = 96;
+        full-at = 99;
+        padding = 2;
 
         time-format = "%H:%M";
         format-charging = "<animation-charging> <label-charging>";
+        format-charging-foreground = color.yellow;
         label-charging = "%percentage%%";
         format-discharging = "<ramp-capacity> <label-discharging>";
         label-discharging = "%percentage%%";
+        format-discharging-foreground = color.yellow;
 
         format-full = "<label-full>";
+        format-full-foreground = color.yellow;
         format-full-prefix = " ";
+
         ramp-capacity-0 = "";
         ramp-capacity-1 = "";
         ramp-capacity-2 = "";
         ramp-capacity-3 = "";
         ramp-capacity-4 = "";
         ramp-capacity-0-foreground = color.red;
-        ramp-capacity-foreground = color.foreground;
+        ramp-capacity-foreground = color.pink;
         bar-capacity-width = 10;
         animation-charging-0 = "";
         animation-charging-1 = "";
@@ -592,18 +586,15 @@ in with config; {
         interval = 5;
 
         format-volume = "<ramp-volume> <label-volume>";
-        format-volume-background = color.green;
-        format-volume-foreground = color.darkGray;
-        format-volume-underline = color.green;
-        format-volume-overline = color.green;
+        format-volume-foreground = color.green;
         format-volume-padding = 2;
 
         label-muted = " mute";
-        label-foreground = color.darkGray;
+        label-foreground = color.green;
 
         label-volume = "%percentage%%";
-        label-volume-foreground = color.darkGray;
-        label-muted-foreground = color.darkGray;
+        label-volume-foreground = color.green;
+        label-muted-foreground = color.green;
 
         ramp-volume-0 = "";
         ramp-volume-1 = "";
