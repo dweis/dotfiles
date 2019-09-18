@@ -46,15 +46,8 @@ in with config; {
       noto-fonts
       font-awesome-ttf
       material-icons
-      # Additional fonts
-      inconsolata
-      terminus_font
-      proggyfonts
-      dejavu_fonts
       powerline-fonts
-      source-code-pro
-      source-sans-pro
-      source-serif-pro
+      dejavu_fonts
       emojione
     ];
 
@@ -407,6 +400,7 @@ in with config; {
         font-0 = "${uiFont}:style=Bold,size=${toString fontSize};0";
         font-1 = "Material Icons:size=${toString (fontSize * 1.5)};4";
         font-2 = "FontAwesome:size=${toString (fontSize * 1.5)};4";
+        font-3 = "EmojiOne Color:size=${toString (fontSize * 1.5)};4";
 
         modules-left = "i3";
         modules-center = "xwindow";
@@ -446,17 +440,17 @@ in with config; {
         type = "internal/i3";
         format = "<label-state> <label-mode>";
         format-spacing = 0;
-        label-focused = "%index%";
+        label-focused = "👉  %index%";
         label-focused-padding = 2;
         label-focused-margin = 1;
         label-focused-font = 1;
-        label-focused-foreground = color.background;
-        label-focused-background = color.cyan;
+        label-focused-foreground = color.pink;
+        label-focused-background = color.darkGray;
         label-unfocused = "%index%";
         label-unfocused-padding = 2;
         label-unfocused-margin = 1;
+        label-unfocused-foreground = color.yellow;
         label-unfocused-background = color.background;
-        label-unfocused-foreground = color.pink;
         label-unfocused-font = 1;
         label-urgent = "%index%";
         label-urgent-padding = 2;
@@ -612,11 +606,12 @@ in with config; {
     config = {
       bars = [];
       colors = {
-        focused = { background = color.pink; border = color.pink; childBorder = color.darkGray; indicator = color.pink; text = color.foreground; };
-        unfocused = { background = color.background; border = color.background; childBorder = color.foreground; indicator = color.pink; text = color.foreground; };
+        focused = { background = color.pink; border = color.pink; childBorder = color.pink; indicator = color.pink; text = color.foreground; };
+        unfocused = { background = color.background; border = color.background; childBorder = color.darkGray; indicator = color.pink; text = color.foreground; };
         focusedInactive = { background = color.background; border = color.background; childBorder = color.pink; indicator = color.pink; text = color.foreground; };
         urgent = { background  = color.yellow; border  = color.yellow; childBorder = color.darkGray; indicator = color.pink; text = color.foreground; };
         placeholder = { background = color.background; border = color.background; childBorder = color.background; indicator = color.background; text = color.foreground; };
+        background = color.background;
       };
       fonts = [ monospaceFont "FontAwesome 12" ];
       keybindings = lib.mkOptionDefault {
@@ -660,8 +655,8 @@ in with config; {
         "XF86AudioLowerVolume" = ''exec "amixer -q set Master 5%-"'';
       };
       gaps = {
-        inner = 4;
-        outer = 4;
+        inner = 8;
+        outer = 2;
         smartBorders = "on";
       };
       modes = {
