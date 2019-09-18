@@ -276,7 +276,7 @@ in with config; {
 
         set cmdheight=1
 
-        colorscheme gruvbox
+        colorscheme dracula
 
         " -- Supertab
         let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
@@ -310,7 +310,7 @@ in with config; {
           ctrlp
           deoplete-nvim
           editorconfig-vim
-          gruvbox
+          awesome-vim-colorschemes
           nerdcommenter
           nerdtree
           supertab
