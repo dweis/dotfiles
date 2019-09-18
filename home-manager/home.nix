@@ -33,22 +33,34 @@ let
       brightCyan = "#9aedfe";
       brightWhite = "#e6e6e6";
     };
-    fontSize = if hiDpi then 15 else 10;
+    fontSize = if hiDpi then 16 else 12;
     monospaceFont = "Hack";
     uiFont = "Noto Sans";
   };
+  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
+  ghcVersion = "ghc864";
 in with config; {
   fonts.fontconfig.enable = true;
 
   home = {
     packages = with pkgs; [
-      # For home-manager
+      # Fonts
       noto-fonts
       font-awesome-ttf
       material-icons
       powerline-fonts
       dejavu_fonts
       emojione
+      # System utils
+      htop
+      # Haskell
+      (all-hies.selection { selector = p: { inherit (p) "ghc864"; }; })
+      (haskell.packages.${ghcVersion}.ghcWithPackages (p: with p; [
+        stack
+        cabal-install
+        stylish-haskell
+        hlint
+      ]))
     ];
 
     file.".stack/config.yaml".text = ''
@@ -240,6 +252,18 @@ in with config; {
             white =   "${color.brightWhite}";
           };
         };
+        background_opacity = 0.87;
+        visual_bell = {
+          animation = "EaseOutExpo";
+          duration = 0;
+        };
+        mouse_bindings = [ 
+          {
+          mouse = "Middle";
+          action = "PasteSelection";
+          }
+        ];
+        live_config_reload = true;
       };
     };
 
@@ -299,6 +323,22 @@ in with config; {
 
         " -- Airline
         let g:airline_powerline_fonts = 1
+
+        " -- HIE
+        let g:LanguageClient_serverCommands = { 'haskell': ['hie-wrapper'] }
+        let g:LanguageClient_rootMarkers = ['*.cabal', 'stack.yaml']
+        hi link ALEError Error
+        hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gold
+        hi link ALEWarning Warning
+        hi link ALEInfo SpellCap
+        nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+        map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
+        map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
+        map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
+        map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
+        map <Leader>lb :call LanguageClient#textDocument_references()<CR>
+        map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+        map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
         '';
 
         plugins = with pkgs.vimPlugins; [
@@ -316,6 +356,7 @@ in with config; {
           supertab
           vim-scala
           vim-plug
+          LanguageClient-neovim
         ];
     };
 
@@ -644,6 +685,18 @@ in with config; {
     script = "polybar main &";
   };
 
+  services.random-background = {
+    enable = true;
+    imageDirectory = "%h/Wallpapers";
+    interval = "1h";
+  };
+
+  services.redshift = {
+    enable = true;
+    latitude = "44.389";
+    longitude = "-79.690";
+  };
+
   xsession.windowManager.i3 = let
     modifier = "Mod4";
   in {
@@ -726,6 +779,8 @@ in with config; {
         { command = "compton -b"; notification = false; }
         { command = "systemctl --user restart dunst"; always = true; notification = false; }
         { command = "systemctl --user restart polybar"; always = true; notification = false; }
+        { command = "systemctl --user restart redshift"; always = true; notification = false; }
+        { command = "systemctl --user restart random-background"; always = true; notification = false; }
         { command = "nm-applet"; notification = false; }
       ];
     };
