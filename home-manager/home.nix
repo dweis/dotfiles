@@ -368,6 +368,50 @@ in with config; {
     '';
   };
 
+  services.dunst = with pkgs; {
+    enable = true;
+    iconTheme = {
+      package = numix-icon-theme-square;
+      name = "Numix-Square";
+      size = "48";
+    };
+    settings = {
+      global = {
+        format = "<b>%s</b>\\n%b";
+        geometry = "300x5-20+20";
+        transparency = 20;
+        frame_width = 3;
+        frame_color = color.blue;
+        font = "${uiFont} ${toString fontSize}";
+        follow = "keyboard";
+        max_icon_size = 64;
+        icon_position = "left";
+        browser = "/run/current-system/sw/bin/google-chrome-stable";
+        demnu = "/home/derrick/.nix-profile/bin/rofi -dmenu -p dunst:";
+      };
+      frame = {
+      };
+      urgency_low = {
+        background = color.background;
+        foreground = color.foreground;
+        frame_color = color.foreground;
+        timeout = 5;
+      };
+      urgency_normal = {
+        background = color.background;
+        foreground = color.cyan;
+        frame_color = color.cyan;
+        timeout = 5;
+      };
+      urgency_critical = {
+        background = color.background;
+        foreground = color.red;
+        frame_color = color.red;
+        timeout = 20;
+      };
+    };
+  };
+
   services.polybar = {
     enable = true;
     package = pkgs.polybar.override {
@@ -449,7 +493,7 @@ in with config; {
         label-unfocused = "%index%";
         label-unfocused-padding = 2;
         label-unfocused-margin = 1;
-        label-unfocused-foreground = color.yellow;
+        label-unfocused-foreground = color.foreground;
         label-unfocused-background = color.background;
         label-unfocused-font = 1;
         label-urgent = "%index%";
@@ -460,7 +504,8 @@ in with config; {
         label-visible-padding = 2;
         label-visible-margin = 1;
         label-visible-font = 1;
-        index-sort = false;
+        label-visible-foreground = color.cyan;
+        index-sort = true;
       };
       "module/xwindow" = {
         type = "internal/xwindow";
@@ -679,6 +724,7 @@ in with config; {
       modifier = modifier;
       startup = [
         { command = "compton -b"; notification = false; }
+        { command = "systemctl --user restart dunst"; always = true; notification = false; }
         { command = "systemctl --user restart polybar"; always = true; notification = false; }
         { command = "nm-applet"; notification = false; }
       ];
