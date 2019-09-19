@@ -54,12 +54,13 @@ in with config; {
       # System utils
       htop
       # Haskell
-      (all-hies.selection { selector = p: { inherit (p) "ghc864"; }; })
+      (all-hies.selection { selector = p: { inherit (p) ghc864; }; })
       (haskell.packages.${ghcVersion}.ghcWithPackages (p: with p; [
         stack
         cabal-install
         stylish-haskell
         hlint
+        hoogle
       ]))
     ];
 
