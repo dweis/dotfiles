@@ -38,7 +38,6 @@ let
     uiFont = "Noto Sans";
   };
   all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
-  ghcVersion = "ghc864";
 in with config; {
   fonts.fontconfig.enable = true;
 
@@ -52,10 +51,11 @@ in with config; {
       dejavu_fonts
       emojione
       # System utils
+      fzf
       htop
       # Haskell
       (all-hies.selection { selector = p: { inherit (p) ghc864; }; })
-      (haskell.packages.${ghcVersion}.ghcWithPackages (p: with p; [
+      (haskell.packages.ghc864.ghcWithPackages (p: with p; [
         stack
         cabal-install
         stylish-haskell
@@ -70,6 +70,11 @@ in with config; {
           author-name: ${name}
           author-email: ${email}
           github-username: ${githubUsername}
+          copyright: 'Copyright: (c) 2019 Derrick Weis'
+      nix:
+        enable: true
+        packages: [zlib]
+      system-ghc: true
     '';
 
     file.".ghci".text = ''
@@ -350,6 +355,7 @@ in with config; {
           syntastic
           ctrlp
           deoplete-nvim
+          fzf-vim
           editorconfig-vim
           awesome-vim-colorschemes
           nerdcommenter
@@ -358,6 +364,9 @@ in with config; {
           vim-scala
           vim-plug
           LanguageClient-neovim
+          vim-stylish-haskell
+          hlint-refactor-vim
+          haskell-vim
         ];
     };
 
