@@ -499,7 +499,7 @@ in with config; {
 
         modules-left = "i3";
         modules-center = "xwindow";
-        modules-right = "cpu memory backlight battery pulseaudio clock";
+        modules-right = "cpu memory network backlight battery pulseaudio clock";
 
         tray-position = "right";
         tray-maxsize = if hiDpi then 24 else 18;
@@ -565,67 +565,19 @@ in with config; {
       "module/cpu" = {
         type = "internal/cpu";
         interval = "0.5";
-        format = "<label> <ramp-load>";
+        format = "<label>";
         format-foreground = color.cyan;
         format-padding = 2;
-        label = "";
+        label = "  %percentage%%";
         label-font = 1;
-        ramp-load-0 = "▁";
-        ramp-load-0-font = 1;
-        ramp-load-0-foreground = color.cyan;
-        ramp-load-1 = "▂";
-        ramp-load-1-font = 1;
-        ramp-load-1-foreground = color.cyan;
-        ramp-load-2 = "▃";
-        ramp-load-2-font = 1;
-        ramp-load-2-foreground = color.cyan;
-        ramp-load-3 = "▄";
-        ramp-load-3-font = 1;
-        ramp-load-3-foreground = color.cyan;
-        ramp-load-4 = "▅";
-        ramp-load-4-font = 1;
-        ramp-load-4-foreground = color.cyan;
-        ramp-load-5 = "▆";
-        ramp-load-5-font = 1;
-        ramp-load-5-foreground = color.cyan;
-        ramp-load-6 = "▇";
-        ramp-load-6-font = 1;
-        ramp-load-6-foreground = color.cyan;
-        ramp-load-7 = "█";
-        ramp-load-7-font = 1;
-        ramp-load-7-foreground = color.cyan;
       };
       "module/memory" = {
         type = "internal/memory";
-        format = "<label> <ramp-used>";
+        format = "<label>";
         label-font = 1;
         format-padding = 2;
         format-foreground = color.purple;
-        label = "";
-        ramp-used-0 = "▁";
-        ramp-used-0-font = 1;
-        ramp-used-0-foreground = color.purple;
-        ramp-used-1 = "▂";
-        ramp-used-1-font = 1;
-        ramp-used-1-foreground = color.purple;
-        ramp-used-2 = "▃";
-        ramp-used-2-font = 1;
-        ramp-used-2-foreground = color.purple;
-        ramp-used-3 = "▄";
-        ramp-used-3-font = 1;
-        ramp-used-3-foreground = color.purple;
-        ramp-used-4 = "▅";
-        ramp-used-4-font = 1;
-        ramp-used-4-foreground = color.purple;
-        ramp-used-5 = "▆";
-        ramp-used-5-font = 1;
-        ramp-used-5-foreground = color.purple;
-        ramp-used-6 = "▇";
-        ramp-used-6-font = 1;
-        ramp-used-6-foreground = color.purple;
-        ramp-used-7 = "█";
-        ramp-used-7-font = 1;
-        ramp-used-7-foreground = color.purple;
+        label = " %gb_used%/%gb_total%";
       };
       "module/clock" = {
         type = "internal/date";
@@ -634,6 +586,12 @@ in with config; {
         time = " %H:%M %p";
         date = " %Y-%m-%d";
         label-foreground = color.pink;
+      };
+      "module/network" = {
+        type = "internal/network";
+        interface = "enp5s0";
+        label-connected = " %downspeed% %upspeed%";
+        label-connected-foreground = color.orange;
       };
       "module/battery" = {
         type = "internal/battery";
