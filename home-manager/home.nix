@@ -43,6 +43,9 @@ in with config; {
 
   home = {
     packages = with pkgs; [
+      # Dekstop
+      xautolock
+      i3lock-fancy
       # Fonts
       noto-fonts
       font-awesome-ttf
@@ -393,7 +396,7 @@ in with config; {
       oh-my-zsh = {
         enable = true;
         theme = "norm";
-        plugins = [ "aws" ];
+        plugins = [ "aws" "ssh-agent" ];
       };
       envExtra = ''
         EDITOR="vim"
@@ -705,7 +708,7 @@ in with config; {
         "${modifier}+q" = "reload";
         "${modifier}+Shift+r" = "restart";
         "${modifier}+Shift+q" = ''exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"'';
-        "${modifier}+Shift+z" = ''exec "mate-screensaver-command -l"'';
+        "${modifier}+Shift+z" = ''exec "i3lock-fancy"'';
         "${modifier}+r" = "mode resize";
         "${modifier}+f" = "fullscreen toggle";
         "${modifier}+s" = "layout stacking";
@@ -750,6 +753,7 @@ in with config; {
         { command = "systemctl --user restart redshift"; always = true; notification = false; }
         { command = "systemctl --user restart random-background"; always = true; notification = false; }
         { command = "nm-applet"; notification = false; }
+        { command = "xautolock -time 15 -locker i3lock-fancy"; always = true; notification = false; }
       ];
     };
     package = pkgs.i3-gaps;
