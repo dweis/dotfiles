@@ -502,7 +502,7 @@ in with config; {
 
         modules-left = "i3";
         modules-center = "xwindow";
-        modules-right = "cpu memory network backlight battery pulseaudio clock";
+        modules-right = "cpu memory network1 network2 backlight battery pulseaudio clock";
 
         tray-position = "right";
         tray-maxsize = if hiDpi then 24 else 18;
@@ -590,9 +590,15 @@ in with config; {
         date = " %Y-%m-%d";
         label-foreground = color.pink;
       };
-      "module/network" = {
+      "module/network1" = {
         type = "internal/network";
         interface = "enp5s0";
+        label-connected = " %downspeed% %upspeed%";
+        label-connected-foreground = color.orange;
+      };
+      "module/network2" = {
+        type = "internal/network";
+        interface = "wlp2s0";
         label-connected = " %downspeed% %upspeed%";
         label-connected-foreground = color.orange;
       };
