@@ -432,16 +432,16 @@ in with config; {
     settings = {
       global = {
         format = "<b>%s</b>\\n%b";
-        geometry = "300x5-20+20";
+        geometry = "600x7-20+20";
         transparency = 20;
         frame_width = 3;
         frame_color = color.blue;
-        font = "${uiFont} ${toString fontSize}";
+        font = "${uiFont} ${toString (fontSize * 0.75)}";
         follow = "keyboard";
         max_icon_size = 64;
         icon_position = "left";
-        browser = "/run/current-system/sw/bin/google-chrome-stable";
-        demnu = "/home/derrick/.nix-profile/bin/rofi -dmenu -p dunst:";
+        browser = "google-chrome-stable";
+        demnu = "rofi -dmenu -p dunst:";
       };
       frame = {
       };
