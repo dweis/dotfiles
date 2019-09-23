@@ -415,6 +415,10 @@ in with config; {
     backend = "glx";
     blur = true;
     shadow = true;
+    activeOpacity = "0.98";
+    inactiveOpacity = "0.90";
+    menuOpacity = "0.95";
+    fade = true;
     extraOptions = ''
       paint-on-overlay = true;
       glx-no-stencil = true;
@@ -754,6 +758,7 @@ in with config; {
       modifier = modifier;
       startup = [
         { command = "compton -b"; notification = false; }
+        { command = "systemctl --user restart compton"; always = true; notification = false; }
         { command = "systemctl --user restart dunst"; always = true; notification = false; }
         { command = "systemctl --user restart polybar"; always = true; notification = false; }
         { command = "systemctl --user restart redshift"; always = true; notification = false; }
