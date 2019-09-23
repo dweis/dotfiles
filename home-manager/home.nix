@@ -57,8 +57,8 @@ in with config; {
       fzf
       htop
       # Haskell
-      (all-hies.selection { selector = p: { inherit (p) ghc864; }; })
-      (haskell.packages.ghc864.ghcWithPackages (p: with p; [
+      (all-hies.selection { selector = p: { inherit (p) ghc865; }; })
+      (haskell.packages.ghc865.ghcWithPackages (p: with p; [
         stack
         cabal-install
         stylish-haskell
