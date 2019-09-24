@@ -93,6 +93,8 @@ in with config; {
       set keymap vi
     '';
 
+    file.".face".source = ./face.png;
+
     file.".config/rofi/dracula.rasi".text = ''
       // Dracula colors
       * {
@@ -375,6 +377,7 @@ in with config; {
           vim-stylish-haskell
           hlint-refactor-vim
           haskell-vim
+          vim-haskellConcealPlus
         ];
     };
 
