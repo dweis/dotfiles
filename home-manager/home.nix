@@ -276,6 +276,11 @@ in with config; {
       };
     };
 
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     git = {
       enable = true;
       userName = "${name}";
