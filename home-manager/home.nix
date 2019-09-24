@@ -769,7 +769,7 @@ in with config; {
         { command = "systemctl --user restart redshift"; always = true; notification = false; }
         { command = "systemctl --user restart random-background"; always = true; notification = false; }
         { command = "nm-applet"; notification = false; }
-        { command = "xautolock -time 15 -locker i3lock-fancy"; always = true; notification = false; }
+        { command = "xautolock -time 30 -locker i3lock-fancy"; always = true; notification = false; }
       ];
     };
     package = pkgs.i3-gaps;
