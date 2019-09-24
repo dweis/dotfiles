@@ -46,6 +46,9 @@ in with config; {
       # Dekstop
       xautolock
       i3lock-fancy
+      slack
+      spotify
+      vlc
       # Fonts
       noto-fonts
       font-awesome-ttf
@@ -726,7 +729,7 @@ in with config; {
         "${modifier}+q" = "reload";
         "${modifier}+Shift+r" = "restart";
         "${modifier}+Shift+q" = ''exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"'';
-        "${modifier}+Shift+z" = ''exec "i3lock-fancy"'';
+        "${modifier}+Shift+z" = ''exec "xautolock -locknow"'';
         "${modifier}+r" = "mode resize";
         "${modifier}+f" = "fullscreen toggle";
         "${modifier}+s" = "layout stacking";
@@ -735,7 +738,7 @@ in with config; {
         "${modifier}+t" = "layout toggle all";
         "${modifier}+Shift+space" = "floating toggle";
         "${modifier}+space" = "focus mode_toggle";
-        "${modifier}+Ctrl+4" = ''exec "--no-startup-id mate-screenshot --interactive"'';
+        "${modifier}+Print" = "exec --no-startup-id import -silent -window root ~/$(date '+%Y-%m-%d-%T')-screenshot.png";
         "${modifier}+a" = "focus parent";
         "${modifier}+d" = "focus child";
         "XF86AudioRaiseVolume" = ''exec "amixer -q set Master 5%+"'';
