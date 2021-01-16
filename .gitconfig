@@ -1,0 +1,14 @@
+[user]
+  email = derrick@derrickweis.com
+  name = Derrick Weis
+
+[pull]
+  ff = only
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
